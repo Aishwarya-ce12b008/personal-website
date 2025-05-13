@@ -1,0 +1,91 @@
+---
+import { type CollectionEntry, getCollection } from "astro:content";
+import SocialList from "@/components/SocialList.astro";
+import PostPreview from "@/components/blog/PostPreview.astro";
+import Note from "@/components/note/Note.astro";
+import { getAllPosts } from "@/data/post";
+import PageLayout from "@/layouts/Base.astro";
+import { collectionDateSort } from "@/utils/date";
+
+// Posts
+const MAX_POSTS = 10;
+const allPosts = await getAllPosts();
+const allPostsByDate = allPosts
+	.sort(collectionDateSort)
+	.slice(0, MAX_POSTS) as CollectionEntry<"post">[];
+
+// Notes
+const MAX_NOTES = 5;
+const allNotes = await getCollection("note");
+const latestNotes = allNotes.sort(collectionDateSort).slice(0, MAX_NOTES);
+---
+
+<PageLayout meta={{ title: "Home" }}>
+	<section>
+		<h1 class="title mb-1 font-semibold">hello!</h1>
+		<p class="mb-4">
+			My friends call me <span
+				class="text-accent dark:text-accent-dark bg-accent/10 dark:bg-accent-dark/10 rounded-sm px-1 py-0.5 font-semibold"
+				>Mani</span
+			> and I'm based out of <span
+				class="text-accent dark:text-accent-dark bg-accent/10 dark:bg-accent-dark/10 rounded-sm px-1 py-0.5 font-semibold"
+				>Bengaluru</span
+			> (yes, I love masala dose and filter coffee!). I used to be a frontend engineer and now I'm more
+			of a full-stack product leader, passionate about building intuitive user experiences and scaling
+			products.
+		</p>
+		<p class="mb-4">
+			I'm currently <span class="font-semibold">Head of Product, AI Agents</span> at <a
+				href="https://www.sarvam.ai/"
+				target="_blank"
+				rel="noopener noreferrer"
+				class="text-accent dark:text-accent-dark hover:underline">Sarvam AI</a
+			>, where I'm helping build the future of AI interactions. Before this, I was leading product
+			at Stable Money, and had an amazing journey at Swiggy, growing through various product roles.
+		</p>
+		<p class="mb-4">
+			I also had the thrill of co-founding <span class="font-semibold">Qrius.ai</span> and being a founding
+			member and CTO at <span class="font-semibold">RAENA</span>, building consumer brands with
+			influencers.
+		</p>
+		<p class="mb-4">
+			I love connecting with new people over morning walks and breakfast. Always on the lookout for
+			great <span class="italic">cafés</span> to work from or explore – if you have recommendations or
+			want to join, reach out to me on <a
+				href="https://twitter.com/your_x_handle"
+				target="_blank"
+				rel="noopener noreferrer"
+				class="text-accent dark:text-accent-dark hover:underline">X/Twitter</a
+			>!
+		</p>
+		<SocialList />
+	</section>
+	<section class="mt-16">
+		<h2 class="title text-accent mb-6 text-xl"><a href="/posts/">Posts</a></h2>
+		<ul class="space-y-6" role="list">
+			{
+				allPostsByDate.map((p) => (
+					<li class="grid gap-2 sm:grid-cols-[auto_1fr]">
+						<PostPreview post={p} />
+					</li>
+				))
+			}
+		</ul>
+	</section>
+	{
+		latestNotes.length > 0 && (
+			<section class="mt-16">
+				<h2 class="title text-accent mb-6 text-xl">
+					<a href="/notes/">Notes</a>
+				</h2>
+				<ul class="space-y-6" role="list">
+					{latestNotes.map((note) => (
+						<li>
+							<Note note={note} as="h3" isPreview />
+						</li>
+					))}
+				</ul>
+			</section>
+		)
+	}
+</PageLayout>
