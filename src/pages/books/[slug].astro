@@ -57,7 +57,36 @@ const coverUrl = book.cover
                      {book.rating && (
                          <div class="space-y-1">
                              <span class="text-xs font-medium text-textColor/50 uppercase tracking-wider">Rating</span>
-                             <div class="text-yellow-500">{"★".repeat(book.rating)}<span class="text-gray-300 dark:text-gray-700">{"★".repeat(5-book.rating)}</span></div>
+                             <div class="flex items-center gap-1" title={`${book.rating} out of 5 stars`}>
+                                {Array.from({ length: 5 }).map((_, i) => {
+                                    const isFull = i < Math.floor(book.rating || 0);
+                                    const isHalf = !isFull && i < (book.rating || 0);
+                                    const isEmpty = !isFull && !isHalf;
+
+                                    return (
+                                        <svg
+                                            aria-hidden="true"
+                                            class="h-4 w-4"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            viewBox="0 0 24 24"
+                                            stroke-width="2"
+                                        >
+                                            {isFull && (
+                                                <circle cx="12" cy="12" r="10" class="fill-accent text-accent" stroke="currentColor" />
+                                            )}
+                                            {isHalf && (
+                                                <>
+                                                    <circle cx="12" cy="12" r="10" class="fill-transparent text-textColor/10" stroke="currentColor" />
+                                                    <path d="M12 2 A10 10 0 0 0 12 22 Z" class="fill-accent text-accent" stroke="none" />
+                                                </>
+                                            )}
+                                            {isEmpty && (
+                                                <circle cx="12" cy="12" r="10" class="fill-transparent text-textColor/10" stroke="currentColor" />
+                                            )}
+                                        </svg>
+                                    );
+                                })}
+                            </div>
                          </div>
                      )}
 

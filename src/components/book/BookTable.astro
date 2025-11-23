@@ -88,18 +88,34 @@ const allTags = Array.from(new Set(books.flatMap((b) => b.tags || []))).sort();
 					</button>
 					{book.rating && (
 						<div class="flex items-center gap-1" title={`Rating: ${book.rating}/5`}>
-							{Array.from({ length: 5 }).map((_, i) => (
-								<svg
-									aria-hidden="true"
-									class={`h-2.5 w-2.5 ${i < (book.rating || 0) ? "fill-accent text-accent" : "fill-transparent text-textColor/10"}`}
-									xmlns="http://www.w3.org/2000/svg"
-									viewBox="0 0 24 24"
-									stroke="currentColor"
-									stroke-width="2"
-								>
-									<circle cx="12" cy="12" r="10" />
-								</svg>
-							))}
+							{Array.from({ length: 5 }).map((_, i) => {
+								const isFull = i < Math.floor(book.rating || 0);
+								const isHalf = !isFull && i < (book.rating || 0);
+								const isEmpty = !isFull && !isHalf;
+
+								return (
+									<svg
+										aria-hidden="true"
+										class="h-2.5 w-2.5"
+										xmlns="http://www.w3.org/2000/svg"
+										viewBox="0 0 24 24"
+										stroke-width="2"
+									>
+										{isFull && (
+											<circle cx="12" cy="12" r="10" class="fill-accent text-accent" stroke="currentColor" />
+										)}
+										{isHalf && (
+											<>
+												<circle cx="12" cy="12" r="10" class="fill-transparent text-textColor/10" stroke="currentColor" />
+												<path d="M12 2 A10 10 0 0 0 12 22 Z" class="fill-accent text-accent" stroke="none" />
+											</>
+										)}
+										{isEmpty && (
+											<circle cx="12" cy="12" r="10" class="fill-transparent text-textColor/10" stroke="currentColor" />
+										)}
+									</svg>
+								);
+							})}
 						</div>
 					)}
 				</div>
@@ -235,14 +251,28 @@ const allTags = Array.from(new Set(books.flatMap((b) => b.tags || []))).sort();
 			// Rating
 			if (modalRating) {
 				modalRating.innerHTML = "";
-				const rating = parseInt(data.rating || "0");
+				const rating = parseFloat(data.rating || "0");
 				for (let i = 0; i < 5; i++) {
 					const dot = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-					dot.setAttribute("class", `h-3 w-3 ${i < rating ? "fill-accent text-accent" : "fill-transparent text-textColor/10"}`);
 					dot.setAttribute("viewBox", "0 0 24 24");
-					dot.setAttribute("stroke", "currentColor");
 					dot.setAttribute("stroke-width", "2");
-					dot.innerHTML = '<circle cx="12" cy="12" r="10" />';
+					dot.setAttribute("class", "h-3 w-3");
+
+					if (i < Math.floor(rating)) {
+						dot.setAttribute("class", "h-3 w-3 fill-accent text-accent");
+						dot.setAttribute("stroke", "currentColor");
+						dot.innerHTML = '<circle cx="12" cy="12" r="10" />';
+					} else if (i < rating) {
+						// Half star
+						dot.innerHTML = `
+							<circle cx="12" cy="12" r="10" class="fill-transparent text-textColor/10" stroke="currentColor" />
+							<path d="M12 2 A10 10 0 0 0 12 22 Z" class="fill-accent text-accent" stroke="none" />
+						`;
+					} else {
+						dot.setAttribute("class", "h-3 w-3 fill-transparent text-textColor/10");
+						dot.setAttribute("stroke", "currentColor");
+						dot.innerHTML = '<circle cx="12" cy="12" r="10" />';
+					}
 					modalRating.appendChild(dot);
 				}
 			}
