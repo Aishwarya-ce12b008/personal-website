@@ -15,6 +15,19 @@ export interface Book {
 
 export const books: Book[] = [
 	{
+		title: "Refactoring UI",
+		author: "Adam Wathan & Steve Schoger",
+		cover: "https://www.refactoringui.com/_next/static/media/book.43eb3b9aec83fb89.png",
+		status: "read",
+		tags: ["Building Products", "Design"],
+		rating: 3.5,
+		description:
+			"A design handbook for developers. No fluff, just practical tactics for making your UI look good.",
+		recommendation:
+			"Really liked that the book was concise & had practical tips. Wish it elaborated a bit more on some topics, but it's great for quick wins.",
+		yearRead: 2024,
+	},
+	{
 		title: "Sapiens: A Brief History of Humankind",
 		author: "Yuval Noah Harari",
 		isbn: "9780062316097",
