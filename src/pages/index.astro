@@ -2,8 +2,9 @@
 import { type CollectionEntry, getCollection } from "astro:content";
 import SocialList from "@/components/SocialList.astro";
 import PostPreview from "@/components/blog/PostPreview.astro";
-import Note from "@/components/note/Note.astro";
+import BookCard from "@/components/BookCard.astro";
 import { getAllPosts } from "@/data/post";
+import { books } from "@/data/books";
 import PageLayout from "@/layouts/Base.astro";
 import { collectionDateSort } from "@/utils/date";
 
@@ -14,51 +15,45 @@ const allPostsByDate = allPosts
 	.sort(collectionDateSort)
 	.slice(0, MAX_POSTS) as CollectionEntry<"post">[];
 
-// Notes
-const MAX_NOTES = 5;
-const allNotes = await getCollection("note");
-const latestNotes = allNotes.sort(collectionDateSort).slice(0, MAX_NOTES);
+// Books - show recently read books
+const recentBooks = books
+	.filter((book) => book.status === "read" && book.yearRead)
+	.sort((a, b) => (b.yearRead || 0) - (a.yearRead || 0))
+	.slice(0, 3);
 ---
 
 <PageLayout meta={{ title: "Home" }}>
 	<section>
-		<h1 class="title mb-1 font-semibold">hello world!</h1>
-		<p class="mb-4">
-			I'm <span
-				class="text-accent dark:text-accent-dark bg-accent/10 dark:bg-accent-dark/10 rounded-sm px-1 py-0.5 font-semibold"
-				>Mani</span
-			>, a product leader driving AI innovation at <a
-				href="https://www.sarvam.ai/"
-				target="_blank"
-				rel="noopener noreferrer"
-				class="text-accent dark:text-accent-dark hover:underline">Sarvam AI</a
-			>, where I shape the future of enterprise AI products.
-		</p>
-		<p class="mb-4">
-			With over a decade of product leadership experience, I've successfully led product strategy at
-			StableMoney and orchestrated the development of multiple high-impact products at <span
-				class="text-accent dark:text-accent-dark bg-accent/10 dark:bg-accent-dark/10 rounded-sm px-1 py-0.5 font-semibold"
-				>Swiggy</span
-			>. My expertise spans consumer experiences, supply chain optimization, data platforms, and
-			large-scale distributed systems.
-		</p>
-		<p class="mb-4">
-			As a founder-turned-product leader, I built and scaled two ventures: Qrius, pioneering
-			conversational commerce solutions, and Raena, which revolutionized social commerce in
-			Southeast Asia. These experiences honed my ability to transform innovative ideas into
-			market-ready products.
-		</p>
-		<p class="mb-4">
-			I hold an engineering degree from Birla Institute of Technology & Sciences, Pilani, and
-			combine technical depth with strategic product thinking. My passion lies in building
-			transformative products that create lasting impact.
-		</p>
-		<p class="mb-4">
-			I'm deeply engaged in the <span class="italic">AI ecosystem</span> and regularly advise founders
-			and VCs on product strategy and AI opportunities. If you're building in this space, I'd love to
-			connect and share insights!
-		</p>
-		<SocialList />
+		<h1 class="title mb-6 font-semibold">hello world!</h1>
+		<div class="space-y-5 leading-relaxed">
+			<p>
+				I'm <span
+					class="text-accent dark:text-accent-dark bg-accent/10 dark:bg-accent-dark/10 rounded-sm px-1 py-0.5 font-semibold"
+					>Mani</span
+				>, a product leader at <a
+					href="https://www.sarvam.ai/"
+					target="_blank"
+					rel="noopener noreferrer"
+					class="text-accent dark:text-accent-dark hover:underline">Sarvam AI</a
+				>. I've spent the last decade building products, and these days I'm focused on how AI can
+				actually be useful for businesses.
+			</p>
+			<p>
+				Before this, I worked at <span
+					class="text-accent dark:text-accent-dark bg-accent/10 dark:bg-accent-dark/10 rounded-sm px-1 py-0.5 font-semibold"
+					>Swiggy</span
+				> where I led product for several teams, and at StableMoney where I helped shape the product
+				strategy. I've also started a couple of companies—Qrius and Raena—that taught me most of what
+				I know about building products people care about.
+			</p>
+			<p>
+				I write about product, AI, and things I'm learning. If you're working on something
+				interesting, I'd enjoy hearing about it.
+			</p>
+		</div>
+		<div class="mt-6">
+			<SocialList />
+		</div>
 	</section>
 	<section class="mt-16">
 		<h2 class="title text-accent mb-6 text-xl"><a href="/posts/">Posts</a></h2>
@@ -73,15 +68,26 @@ const latestNotes = allNotes.sort(collectionDateSort).slice(0, MAX_NOTES);
 		</ul>
 	</section>
 	{
-		latestNotes.length > 0 && (
+		recentBooks.length > 0 && (
 			<section class="mt-16">
-				<h2 class="title text-accent mb-6 text-xl">
-					<a href="/notes/">Notes</a>
-				</h2>
-				<ul class="space-y-6" role="list">
-					{latestNotes.map((note) => (
+				<div class="flex items-center justify-between mb-6">
+					<h2 class="title text-accent text-xl">
+						<a href="/books/">Books</a>
+					</h2>
+					<a
+						href="/books/"
+						class="text-sm text-textColor/70 hover:text-accent dark:hover:text-accent-dark transition-colors"
+					>
+						view all →
+					</a>
+				</div>
+				<p class="text-textColor/70 mb-8 text-sm">
+					A few books I've read recently that have influenced my thinking
+				</p>
+				<ul class="space-y-8" role="list">
+					{recentBooks.map((book) => (
 						<li>
-							<Note note={note} as="h3" isPreview />
+							<BookCard book={book} />
 						</li>
 					))}
 				</ul>
