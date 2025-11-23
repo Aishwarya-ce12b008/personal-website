@@ -1,0 +1,107 @@
+---
+import PageLayout from "@/layouts/Base.astro";
+import { books } from "@/data/books";
+
+export function getStaticPaths() {
+	return books.map((book) => {
+		const slug = book.title
+			.toLowerCase()
+			.replace(/[^\w\s-]/g, "")
+			.replace(/[\s_-]+/g, "-")
+			.replace(/^-+|-+$/g, "");
+		return {
+			params: { slug },
+			props: { book },
+		};
+	});
+}
+
+const { book } = Astro.props;
+
+const meta = {
+	title: book.title,
+	description: `Notes and review for ${book.title} by ${book.author}`,
+};
+
+const coverUrl = book.cover
+	? book.cover
+	: book.isbn
+		? `https://covers.openlibrary.org/b/isbn/${book.isbn}-L.jpg`
+		: "https://placehold.co/400x600?text=No+Cover";
+---
+
+<PageLayout meta={meta}>
+	<div class="max-w-3xl mx-auto">
+        <a href="/books" class="inline-flex items-center gap-1 text-sm text-textColor/50 hover:text-accent mb-8 transition-colors">
+            ← Back to Books
+        </a>
+
+		<div class="flex flex-col md:flex-row gap-8 md:gap-12">
+			<div class="w-full md:w-1/3 shrink-0">
+				<img
+					src={coverUrl}
+					alt={book.title}
+					class="w-full rounded-lg shadow-lg aspect-[2/3] object-cover bg-gray-100 dark:bg-gray-800"
+                    transition:name={`book-cover-${book.title}`}
+				/>
+                
+                <div class="mt-6 space-y-4">
+                    <div class="space-y-1">
+                        <span class="text-xs font-medium text-textColor/50 uppercase tracking-wider">Status</span>
+                        <div class="flex items-center gap-2">
+                             <span class={`w-2 h-2 rounded-full ${book.status === 'reading' ? 'bg-accent' : book.status === 'read' ? 'bg-green-500' : 'bg-yellow-500'}`}></span>
+                             <p class="text-sm capitalize">{book.status.replace(/-/g, ' ')}</p>
+                        </div>
+                    </div>
+
+                     {book.rating && (
+                         <div class="space-y-1">
+                             <span class="text-xs font-medium text-textColor/50 uppercase tracking-wider">Rating</span>
+                             <div class="text-yellow-500">{"★".repeat(book.rating)}<span class="text-gray-300 dark:text-gray-700">{"★".repeat(5-book.rating)}</span></div>
+                         </div>
+                     )}
+
+                     {book.yearRead && (
+                         <div class="space-y-1">
+                             <span class="text-xs font-medium text-textColor/50 uppercase tracking-wider">Read In</span>
+                             <p class="text-sm">{book.yearRead}</p>
+                         </div>
+                     )}
+                </div>
+			</div>
+
+			<div class="w-full md:w-2/3">
+				<h1 class="text-3xl md:text-4xl font-bold leading-tight mb-2">{book.title}</h1>
+				<p class="text-xl text-textColor/60 mb-6">{book.author}</p>
+
+                {book.tags && (
+                    <div class="flex flex-wrap gap-2 mb-8">
+                        {book.tags.map(tag => (
+                            <span class="text-xs px-2.5 py-1 rounded-full bg-textColor/5 text-textColor/70">#{tag}</span>
+                        ))}
+                    </div>
+                )}
+
+                <div class="prose prose-sm dark:prose-invert max-w-none">
+                    <h3 class="text-lg font-semibold mb-2">My Thoughts</h3>
+                    {book.recommendation ? (
+                        <p class="text-lg leading-relaxed text-textColor/90 italic border-l-4 border-accent/20 pl-4">
+                            {book.recommendation}
+                        </p>
+                    ) : (
+                        <p class="text-textColor/50 italic">No notes added yet.</p>
+                    )}
+                    
+                    {book.description && (
+                        <div class="mt-8 pt-8 border-t border-textColor/10">
+                             <h3 class="text-sm font-semibold text-textColor/50 uppercase tracking-wider mb-3">Description</h3>
+                             <p>{book.description}</p>
+                        </div>
+                    )}
+                </div>
+			</div>
+		</div>
+	</div>
+</PageLayout>
+
+

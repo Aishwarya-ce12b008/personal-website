@@ -1,0 +1,63 @@
+---
+import type { Book } from "@/data/books";
+
+interface Props {
+	book: Book;
+}
+
+const { book } = Astro.props;
+
+const coverUrl = book.cover
+	? book.cover
+	: book.isbn
+		? `https://covers.openlibrary.org/b/isbn/${book.isbn}-L.jpg`
+		: "https://placehold.co/400x600?text=No+Cover";
+---
+
+<div class="flex flex-col sm:flex-row gap-6 bg-transparent">
+	<div class="shrink-0 w-full sm:w-20 md:w-24">
+		<img
+			src={coverUrl}
+			alt={`Cover of ${book.title}`}
+			class="w-full rounded-lg shadow-md object-cover aspect-[2/3] bg-gray-100"
+			loading="lazy"
+		/>
+	</div>
+	<div class="flex flex-col justify-start gap-2">
+		<div>
+			<h3 class="text-xl font-bold text-textColor leading-tight">
+				{book.title}
+			</h3>
+			<p class="text-textColor/80 italic">{book.author}</p>
+		</div>
+
+		{
+			book.rating && (
+				<div class="flex items-center gap-1" aria-label={`${book.rating} out of 5 stars`}>
+					{Array.from({ length: 5 }).map((_, i) => (
+						<svg
+							aria-hidden="true"
+							class={`h-2.5 w-2.5 ${i < (book.rating || 0) ? "fill-accent text-accent" : "fill-transparent text-textColor/10"}`}
+							xmlns="http://www.w3.org/2000/svg"
+							viewBox="0 0 24 24"
+							stroke="currentColor"
+							stroke-width="2"
+						>
+							<circle cx="12" cy="12" r="10" />
+						</svg>
+					))}
+				</div>
+			)
+		}
+
+		{
+			book.recommendation && (
+				<div class="mt-2 text-sm text-textColor/80 italic">
+					<p class="line-clamp-2">{book.recommendation}</p>
+				</div>
+			)
+		}
+	</div>
+</div>
+
+

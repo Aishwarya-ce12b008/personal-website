@@ -1,0 +1,38 @@
+---
+---
+<header
+	id="scroll-header"
+	class="fixed top-4 left-1/2 -translate-x-1/2 z-50 flex items-center gap-4 rounded-full bg-global-bg/80 px-4 py-2 shadow-sm backdrop-blur-md border border-textColor/10 transition-all duration-300 -translate-y-[150%] data-[show=true]:translate-y-0"
+>
+	<a href="/" class="text-sm font-bold hover:text-accent transition-colors">Home</a>
+    <div class="h-4 w-px bg-textColor/20"></div>
+	<span class="text-sm font-medium whitespace-nowrap">My Bookshelf</span>
+    <div class="h-4 w-px bg-textColor/20"></div>
+	<button id="scroll-to-top" class="text-sm hover:text-accent transition-colors cursor-pointer whitespace-nowrap">Top &uarr;</button>
+</header>
+
+<script>
+    const header = document.getElementById('scroll-header');
+    const topBtn = document.getElementById('scroll-to-top');
+    let lastScrollY = window.scrollY;
+
+    function updateHeader() {
+        const currentScrollY = window.scrollY;
+        const isScrollingUp = currentScrollY < lastScrollY;
+        const isNotAtTop = currentScrollY > 100;
+
+        if (isScrollingUp && isNotAtTop) {
+            header?.setAttribute('data-show', 'true');
+        } else {
+            header?.setAttribute('data-show', 'false');
+        }
+        lastScrollY = currentScrollY;
+    }
+
+    window.addEventListener('scroll', updateHeader, { passive: true });
+    
+    topBtn?.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+</script>
+

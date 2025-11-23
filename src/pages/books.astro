@@ -1,0 +1,26 @@
+---
+import BookTable from "@/components/book/BookTable.astro";
+import ScrollHeader from "@/components/book/ScrollHeader.astro";
+import { books } from "@/data/books";
+import PageLayout from "@/layouts/Base.astro";
+
+const meta = {
+	description: "A collection of books I've read, am reading, or hope to read soon.",
+	title: "📕 Mani's Bookshelf",
+};
+---
+
+<PageLayout meta={meta} maxWidth="max-w-6xl" skipHeader={true}>
+	<ScrollHeader />
+	<div class="mb-8 flex flex-col gap-4">
+		<div>
+			<h1 class="title mb-4">My Bookshelf</h1>
+			<p class="text-textColor/80 max-w-2xl">
+				A curation of books that have shaped my thinking, stories that moved me, and what I'm
+				looking forward to reading next.
+			</p>
+		</div>
+	</div>
+
+	<BookTable books={books} />
+</PageLayout>

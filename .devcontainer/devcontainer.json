@@ -1,41 +1,41 @@
 {
-  "name": "Astro Blog Development",
-  "image": "mcr.microsoft.com/devcontainers/javascript-node:1-20-bullseye",
-  
-  "features": {
-    "ghcr.io/devcontainers/features/github-cli:1": {},
-    "ghcr.io/devcontainers/features/git:1": {}
-  },
+	"name": "Astro Blog Development",
+	"image": "mcr.microsoft.com/devcontainers/javascript-node:1-20-bullseye",
 
-  "customizations": {
-    "vscode": {
-      "extensions": [
-        "astro-build.astro-vscode",
-        "bradlc.vscode-tailwindcss",
-        "esbenp.prettier-vscode",
-        "biomejs.biome",
-        "ms-vscode.vscode-typescript-next"
-      ],
-      "settings": {
-        "editor.defaultFormatter": "biomejs.biome",
-        "editor.formatOnSave": true,
-        "editor.codeActionsOnSave": {
-          "source.fixAll": true,
-          "source.organizeImports": true
-        }
-      }
-    }
-  },
+	"features": {
+		"ghcr.io/devcontainers/features/github-cli:1": {},
+		"ghcr.io/devcontainers/features/git:1": {}
+	},
 
-  "forwardPorts": [4321],
-  "portsAttributes": {
-    "4321": {
-      "label": "Astro Dev Server",
-      "onAutoForward": "notify"
-    }
-  },
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"astro-build.astro-vscode",
+				"bradlc.vscode-tailwindcss",
+				"esbenp.prettier-vscode",
+				"biomejs.biome",
+				"ms-vscode.vscode-typescript-next"
+			],
+			"settings": {
+				"editor.defaultFormatter": "biomejs.biome",
+				"editor.formatOnSave": true,
+				"editor.codeActionsOnSave": {
+					"source.fixAll": true,
+					"source.organizeImports": true
+				}
+			}
+		}
+	},
 
-  "postCreateCommand": "npm install -g pnpm && pnpm install",
-  
-  "remoteUser": "node"
+	"forwardPorts": [4321],
+	"portsAttributes": {
+		"4321": {
+			"label": "Astro Dev Server",
+			"onAutoForward": "notify"
+		}
+	},
+
+	"postCreateCommand": "npm install -g pnpm && pnpm install",
+
+	"remoteUser": "node"
 }

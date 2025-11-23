@@ -9,23 +9,27 @@ import type { SiteMeta } from "@/types";
 
 interface Props {
 	meta: SiteMeta;
+	maxWidth?: string;
+	skipHeader?: boolean;
 }
 
 const {
 	meta: { articleDate, description = siteConfig.description, ogImage, title },
+	maxWidth = "max-w-3xl",
+	skipHeader = false,
 } = Astro.props;
 ---
 
-<html class="scroll-smooth" lang={siteConfig.lang}>
+<html class="scroll-smooth" lang={siteConfig.lang} data-theme="dark">
 	<head>
 		<BaseHead articleDate={articleDate} description={description} ogImage={ogImage} title={title} />
 	</head>
 	<body
-		class="bg-global-bg text-global-text mx-auto flex min-h-screen max-w-3xl flex-col px-4 pt-16 font-mono text-sm font-normal antialiased sm:px-8"
+		class={`bg-global-bg text-global-text mx-auto flex min-h-screen ${maxWidth} flex-col px-4 pt-16 font-mono text-sm font-normal antialiased sm:px-8`}
 	>
 		<ThemeProvider />
 		<SkipLink />
-		<Header />
+		{!skipHeader && <Header />}
 		<main id="main">
 			<slot />
 		</main>
