@@ -72,6 +72,7 @@ const allTags = Array.from(new Set(books.flatMap((b) => b.tags || []))).sort();
 						data-rating={book.rating}
 						data-desc={book.description}
 						data-rec={book.recommendation}
+						data-year={book.yearRead}
 						aria-label={`View details for ${book.title}`}
 					>
 						<img
@@ -237,7 +238,12 @@ const allTags = Array.from(new Set(books.flatMap((b) => b.tags || []))).sort();
 			
 			if (modalCover) modalCover.src = data.cover || "";
 			if (modalTitle) modalTitle.textContent = data.title || "";
-			if (modalAuthor) modalAuthor.textContent = data.author || "";
+			if (modalAuthor) {
+				modalAuthor.textContent = data.author || "";
+				if (data.year) {
+					modalAuthor.textContent += ` • Read in ${data.year}`;
+				}
+			}
 			if (modalDesc) modalDesc.textContent = data.desc || "No description available.";
 			
 			// Recommendation

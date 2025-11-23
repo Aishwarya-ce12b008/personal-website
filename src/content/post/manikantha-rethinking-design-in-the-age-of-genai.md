@@ -9,9 +9,8 @@ description:
 author: Manikantha
 publication: Unstructured
 publishDate: 2025-04-03
+ogImage: https://cdn.sanity.io/images/599r6htc/regionalized/27db1d8f2eb3257c620306f5d87fd62db037c6eb-3264x1836.png?w=1632&q=75&fit=max&auto=format&dpr=2
 ---
-
-# Rethinking Design in the Age of GenAI
 
 _Quick heads up: This piece draws from my experience with tools like Midjourney (AI image generation), Cursor (AI-powered code editor), Bolt (no-code platform), and Lovable (design tool). I've built and shipped three revenue-generating products with these tools over the last 6 months and have some evolving thoughts on role of design. While you don't need to be familiar with these tools to follow along, knowing them helps appreciate the parallels I'm drawing about where design tools are headed._
 
@@ -19,7 +18,7 @@ As I spend time with AI code generation tools, I keep returning to the question 
 
 Yet I'm working with developers more than ever before. We ship faster, which makes us more ambitious. Small startups now compress quarterly roadmaps into sprints. But there's something brewing on the side – this velocity unlock means all teams must match software development's new pace. And there's one department where GenAI hasn't made its foray, failing to keep up.
 
-## **The Missing Piece: Why Text-to-Design Lags Behind**
+## The Missing Piece: Why Text-to-Design Lags Behind
 
 Figma has ruled as the design world's standard for years. They famously took five years to launch out of beta, perfecting their product with early testers. While Figma presumably perfects their Text-to-Design model, the rest of the world has moved on. We live in a strange moment where "text to everything" exists except text to design. We have LLMs for Text-to-Image, Text-to-Video, Text-to-Code, Text-to-Music, Text-to-3D assets – but no Text-to-Design. This has significantly handicapped designers' velocity compared to other teams unlocking GenAI benefits.
 
@@ -37,7 +36,7 @@ I've divided the rest of this into 3 chapters:
 
 3. Chapter 3: How companies look at Design
 
-## Chapter 1: **The First Design Revolution: Mid-journey**
+## Chapter 1: The First Design Revolution: Mid-journey
 
 Midjourney, a leading AI image generation tool, has fundamentally transformed the graphic design workflow by allowing users to create stunning visuals through text prompts rather than manual design work. This shift represents the first wave of AI's impact on design.
 
@@ -99,7 +98,7 @@ My takeaways from this:
 
 These changes in graphic design foreshadow what's coming to product design. As we'll see in the next section, the boundary between design and implementation is already beginning to blur in more complex UI environments.
 
-## Chapter 2: **Beyond the Handoff: Convergence of Design and Code**
+## Chapter 2: Beyond the Handoff: Convergence of Design and Code
 
 While Midjourney revolutionized static image creation, product design presents a more intricate challenge. It's not just about visual aesthetics - it involves complex interaction patterns, state management, and technical implementation. However, the emergence of AI code generation offers an interesting shortcut: instead of trying to solve the 'design-to-code' translation problem, what if we could skip the intermediate design phase entirely?
 
@@ -135,7 +134,7 @@ These AI capabilities force us to reconsider a fundamental question about our cu
 
 As AI tools improve, the artificial separation between design and implementation becomes increasingly difficult to justify.
 
-### **Chapter 3: How Companies Invest in Design**
+## Chapter 3: How Companies Invest in Design
 
 While the technical capabilities for design-code convergence are emerging, adoption will vary across different business contexts. To better understand this, we can look at how different types of products value design in their overall strategy. A company's investment into design is primarily influenced by - how much does design influence final buying decision of my customer?
 
@@ -155,7 +154,7 @@ A company thats working on building navigation system for Marine Engineers needs
 
 For a lot of companies that are trying to find PMFs, solving workflows, todays LLM to code is a very good option to get velocity and reduce cost.
 
-## **The oncoming of a new design-engineer**
+## The oncoming of a new design-engineer
 
 1. Midjourney showed that the game has changed from knowing photoshop to knowing how to prompt.
 
@@ -169,7 +168,7 @@ The designer can just prompt "Make three variations of this header component" an
 
 There is a white space opportunity where Figma adapts to work well with code or a new software gets created that provides designers the flexibility & creativity they need while generating code outputs.
 
-## **The new opportunity**
+## The new opportunity
 
 The convergence of design and code through AI represents a fundamental shift in how digital products will be created. This isn't just about efficiency gains but about reimagining the entire process from ideation to production. The billion-dollar opportunity I envision is a platform that provides designers the creative flexibility they need while simultaneously generating production-ready code.
 

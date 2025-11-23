@@ -32,11 +32,11 @@ const dateTimeOptions: Intl.DateTimeFormatOptions = {
 	)
 }
 {data.draft ? <span class="text-base text-red-500">(Draft)</span> : null}
-<h1 class="title">
+<h1 class="text-4xl font-bold text-global-text mb-4 tracking-tight">
 	{data.title}
 </h1>
-<div class="flex flex-wrap items-center gap-x-3 gap-y-2">
-	<p class="font-semibold">
+<div class="flex flex-wrap items-center gap-x-3 gap-y-2 text-sm">
+	<p class="font-semibold text-gray-500">
 		<FormattedDate date={data.publishDate} dateTimeOptions={dateTimeOptions} /> /{" "}
 		{readingTime}
 	</p>
@@ -73,7 +73,7 @@ const dateTimeOptions: Intl.DateTimeFormatOptions = {
 				<>
 					{/* prettier-ignore */}
 					<span class="contents">
-						<a class="cactus-link inline-block before:content-['#']" data-pagefind-filter={`tag:${tag}`} href={`/tags/${tag}/`}><span class="sr-only">View more blogs with the tag&nbsp;</span>{tag}
+						<a class="cactus-link inline-block" data-pagefind-filter={`tag:${tag}`} href={`/tags/${tag}/`}><span class="sr-only">View more blogs with the tag&nbsp;</span>{tag}
 						</a>{i < data.tags.length - 1 && ", "}
 					</span>
 				</>

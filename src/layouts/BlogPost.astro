@@ -20,6 +20,7 @@ const readingTime: string = remarkPluginFrontmatter.readingTime;
 ---
 
 <BaseLayout
+	maxWidth="max-w-5xl"
 	meta={{
 		articleDate,
 		description,
@@ -28,15 +29,17 @@ const readingTime: string = remarkPluginFrontmatter.readingTime;
 	}}
 >
 	<article class="grow break-words" data-pagefind-body>
-		<div id="blog-hero" class="mb-12"><Masthead content={post} readingTime={readingTime} /></div>
-		<div class="flex flex-col gap-10 lg:flex-row lg:items-start">
-			{!!headings.length && <TOC headings={headings} />}
-			<div
-				class="prose prose-sm prose-headings:font-semibold prose-headings:text-accent-2 prose-headings:before:absolute prose-headings:before:-ms-4 prose-headings:before:text-gray-600 prose-headings:hover:before:text-accent sm:prose-headings:before:content-['#'] sm:prose-th:before:content-none"
-			>
-				<slot />
-				<WebMentions />
+		<div class="flex flex-col gap-12 lg:flex-row lg:items-start lg:gap-24">
+			<div class="min-w-0 flex-1">
+				<div id="blog-hero" class="mb-8"><Masthead content={post} readingTime={readingTime} /></div>
+				<div
+					class="prose prose-base prose-headings:font-semibold prose-headings:text-accent-2 prose-th:before:content-none prose-img:border prose-img:border-zinc-200 dark:prose-img:border-zinc-700 prose-img:rounded-md"
+				>
+					<slot />
+					<WebMentions />
+				</div>
 			</div>
+			{!!headings.length && <TOC headings={headings} />}
 		</div>
 	</article>
 	<button

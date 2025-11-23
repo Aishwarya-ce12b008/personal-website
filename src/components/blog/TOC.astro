@@ -12,11 +12,36 @@ const { headings } = Astro.props;
 const toc = generateToc(headings);
 ---
 
-<details open class="lg:sticky lg:top-12 lg:order-2 lg:-me-32 lg:basis-64">
-	<summary class="title hover:marker:text-accent cursor-pointer text-lg">Table of Contents</summary>
+<aside class="lg:sticky lg:top-12 lg:order-2 lg:basis-64">
+	<h2 class="title text-lg">Table of Contents</h2>
 	<nav class="ms-4 lg:w-full">
 		<ol class="mt-4">
 			{toc.map((heading) => <TOCHeading heading={heading} />)}
 		</ol>
 	</nav>
-</details>
+</aside>
+
+<script>
+	const observer = new IntersectionObserver(
+		(entries) => {
+			entries.forEach((entry) => {
+				const heading = entry.target;
+				const tocLink = document.querySelector(`.toc-link[href="#${heading.id}"]`);
+
+				if (entry.isIntersecting) {
+					// Remove active class from all links
+					document.querySelectorAll(".toc-link").forEach((link) => {
+						link.classList.remove("text-accent", "font-bold");
+					});
+					// Add active class to the current link
+					tocLink?.classList.add("text-accent", "font-bold");
+				}
+			});
+		},
+		{ rootMargin: "-100px 0px -66% 0px" }
+	);
+
+	// Observe all headings in the main content
+	const headings = document.querySelectorAll(".prose h2, .prose h3, .prose h4");
+	headings.forEach((heading) => observer.observe(heading));
+</script>

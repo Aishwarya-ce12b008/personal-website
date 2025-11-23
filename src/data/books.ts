@@ -105,6 +105,7 @@ export const books: Book[] = [
 			"A biography of the Founding Father, detailing his life as a scientist, inventor, diplomat, and writer.",
 		recommendation:
 			"Franklin was the original prototype for the modern American entrepreneur. His life is a masterclass in curiosity and practicality. What strikes me most is his constant drive for self-improvement and his ability to be serious about his work without taking himself too seriously. A true polymath whose life offers lessons on being a better citizen and human.",
+		yearRead: 2022,
 	},
 	{
 		title: "Leonardo da Vinci",
@@ -118,6 +119,7 @@ export const books: Book[] = [
 			"A biography connecting Leonardo's art to his science, based on his notebooks and life.",
 		recommendation:
 			"This book dispels the myth of the divine genius and shows Leonardo as he really was: relentlessly curious, observant, and often distracted. His greatness came from his refusal to separate art from science. It's inspiring because it suggests that his 'genius' was actually a set of habits—observation and curiosity—that we can all cultivate.",
+		yearRead: 2023,
 	},
 	{
 		title: "The Design of Everyday Things",
@@ -131,6 +133,7 @@ export const books: Book[] = [
 			"A look at how design serves as the communication between object and user, and how to optimize it.",
 		recommendation:
 			"You'll never look at a door handle the same way again. This is the bible of usability. Norman articulates why we get frustrated with technology and objects, shifting the blame from 'stupid users' to 'bad design.' It's foundational reading for anyone who builds things for people.",
+		yearRead: 2021,
 	},
 	{
 		title: "The Making of a Manager",
@@ -144,6 +147,7 @@ export const books: Book[] = [
 			"A guide to building a team and giving feedback, based on Zhuo's experience at Facebook.",
 		recommendation:
 			"Most management books are written by consultants or CEOs at the end of their careers. This feels like advice from a smart friend who is just a few steps ahead of you. It's incredibly tactical and empathetic, dealing with the real, messy day-to-day of leading people. Essential for first-time managers.",
+		yearRead: 2023,
 	},
 	{
 		title: "Why We Sleep",
@@ -157,6 +161,7 @@ export const books: Book[] = [
 			"A neuroscientist shows how sleep is the foundation of our health, brain power, and emotional balance.",
 		recommendation:
 			"This is one of those rare books that actually changed my behavior. Walker makes a terrifyingly compelling case for why sleep is the single most effective performance enhancer we have. It's not just about rest; it's about emotional regulation, memory, and long-term health. I prioritize 8 hours now, non-negotiable.",
+		yearRead: 2022,
 	},
 	{
 		title: "Influence: The Psychology of Persuasion",
@@ -170,6 +175,7 @@ export const books: Book[] = [
 			"Explains the psychology of why people say 'yes'—and how to apply these understandings.",
 		recommendation:
 			"It's scary how easily our brains can be hacked. Cialdini breaks down the six principles of persuasion that drive our decisions. As a product person, it's a manual for ethical influence; as a consumer, it's a defense shield against manipulation. A classic for a reason.",
+		yearRead: 2020,
 	},
 	{
 		title: "High Output Management",
@@ -183,6 +189,7 @@ export const books: Book[] = [
 			"A guide to the art of the entrepreneur and the skill of creating and maintaining new businesses.",
 		recommendation:
 			"The definitive text on how to run a company. Grove approaches management with an engineer's mindset: looking at leverage, output, and process. The concepts of 'task relevant maturity' and the purpose of meetings are things I use every week. Dense, but incredibly high ROI per page.",
+		yearRead: 2023,
 	},
 	{
 		title: "Hooked: How to Build Habit-Forming Products",
@@ -196,6 +203,7 @@ export const books: Book[] = [
 			"Explains the 'Hook Model'—a four-step process embedded into products to encourage customer behavior.",
 		recommendation:
 			"This is the playbook that Silicon Valley used to capture our attention. Eyal breaks down the loop of Trigger, Action, Reward, and Investment. Understanding this loop is critical for building sticky products, but also for understanding your own digital addictions. Powerful stuff.",
+		yearRead: 2021,
 	},
 	{
 		title: "The Laws of Human Nature",
@@ -209,5 +217,16 @@ export const books: Book[] = [
 			"Draws from history and philosophy to help readers understand the motivations of themselves and others.",
 		recommendation:
 			"Greene is unparalleled at dissecting the darker, often unacknowledged parts of human psychology. This book is a mirror. It forces you to confront your own envy, narcissism, and shortsightedness. It's a long read, but it gives you X-ray vision into social dynamics and your own behavior.",
+		yearRead: 2024,
+	},
+	{
+		title: "The Little Prince",
+		author: "Antoine de Saint-Exupéry",
+		cover: "https://m.media-amazon.com/images/I/81yLt8OG7zL.jpg",
+		status: "want-to-read",
+		tags: ["Fiction", "Philosophy"],
+		rating: 5,
+		description:
+			"A novella about a young prince who visits various planets, addressing themes of loneliness, friendship, love, and loss.",
 	},
 ];
