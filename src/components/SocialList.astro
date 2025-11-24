@@ -15,37 +15,39 @@ const socialLinks: {
 	{
 		friendlyName: "LinkedIn",
 		link: "https://www.linkedin.com/in/manikantha/",
-		name: "mdi:linkedin",
+		name: "linkedin",
 	},
 	{
 		friendlyName: "X",
 		link: "http://x.com/live_manikantha",
-		name: "mdi:twitter",
+		name: "x",
 	},
 	{
 		friendlyName: "Email",
 		link: "mailto:hello@manikantha.com",
-		name: "mdi:email",
+		name: "email",
 	},
 ];
 ---
 
-<div class="flex flex-wrap items-end gap-x-2">
-	<p>Find me on</p>
-	<ul class="flex flex-1 items-center gap-x-2 sm:flex-initial">
+<div class="flex flex-wrap items-center gap-x-2">
+	<p class="text-textColor/60 text-sm">My coordinates:</p>
+	<ul class="flex items-center gap-x-1">
 		{
-			socialLinks.map(({ friendlyName, isWebmention, link, name }) => (
-				<li class="flex">
-					<a
-						class="hover:text-link inline-block"
-						href={link}
-						rel={`noreferrer ${isWebmention ? "me authn" : ""}`}
-						target="_blank"
-					>
-						<Icon aria-hidden="true" class="h-8 w-8" focusable="false" name={name} />
-						<span class="sr-only">{friendlyName}</span>
-					</a>
-				</li>
+			socialLinks.map(({ friendlyName, isWebmention, link, name }, index) => (
+				<>
+					<li class="flex">
+						<a
+							class="underline underline-offset-2 hover:text-accent transition-colors"
+							href={link}
+							rel={`noreferrer ${isWebmention ? "me authn" : ""}`}
+							target="_blank"
+						>
+							{friendlyName}
+						</a>
+					</li>
+					{index < socialLinks.length - 1 && <li class="text-textColor/40">/</li>}
+				</>
 			))
 		}
 	</ul>
