@@ -1,0 +1,59 @@
+---
+import PageLayout from "@/layouts/Base.astro";
+
+const meta = {
+	description: "Get in touch with Mani for career guidance, product management discussions, or just to say hello.",
+	title: "Contact",
+};
+---
+
+<PageLayout meta={meta}>
+	<section class="mb-12">
+		<h1 class="title mb-4">Let's connect</h1>
+		<p class="text-textColor/70 max-w-xl">
+			Whether you want to chat about product, AI, career transitions, or just say hello—I'd love to hear from you.
+		</p>
+	</section>
+
+	<section class="mb-12">
+		<a 
+			href="mailto:hello@manikantha.com" 
+			class="inline-flex items-center gap-3 text-lg font-medium text-accent dark:text-accent-dark hover:underline underline-offset-4"
+		>
+			<svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+				<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+			</svg>
+			hello@manikantha.com
+		</a>
+	</section>
+
+	<section>
+		<h2 class="title text-xl mb-6 text-accent">Book a session</h2>
+		<p class="text-textColor/70 mb-6 max-w-xl">
+			Looking for career guidance, want to break into PM, or explore AI product management? Book a 1:1 session below.
+		</p>
+		<div class="topmate-embed rounded-xl overflow-hidden border border-textColor/10">
+			<iframe 
+				src="https://topmate.io/embed/profile/mani19?theme=D5D5D5" 
+				frameborder="0" 
+				width="100%" 
+				height="700"
+				loading="lazy"
+				title="Book a session with Mani on Topmate"
+				class="bg-white dark:bg-[#1a1a1a]"
+			></iframe>
+		</div>
+	</section>
+</PageLayout>
+
+<style>
+	.topmate-embed {
+		min-height: 500px;
+	}
+	
+	.topmate-embed iframe {
+		min-height: 700px;
+	}
+</style>
+
+
