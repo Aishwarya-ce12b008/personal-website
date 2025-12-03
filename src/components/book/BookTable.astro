@@ -77,6 +77,7 @@ const allTags = Array.from(new Set(books.flatMap((b) => b.tags || []))).sort((a,
 						data-desc={book.description}
 						data-rec={book.recommendation}
 						data-year={book.yearRead}
+						data-review-slug={book.reviewSlug}
 						aria-label={`View details for ${book.title}`}
 					>
 						<img
@@ -178,6 +179,17 @@ const allTags = Array.from(new Set(books.flatMap((b) => b.tags || []))).sort((a,
 						<h3 class="font-medium text-xs uppercase tracking-wider text-textColor/40 mb-1">My Thoughts</h3>
 						<p id="modal-rec" class="text-accent italic leading-relaxed text-pretty"></p>
 					</div>
+
+					<a
+						id="modal-review-link"
+						href="#"
+						class="hidden items-center gap-2 text-sm font-medium text-accent hover:underline"
+					>
+						Read Full Review
+						<svg class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+							<path fill-rule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L15.586 11H3a1 1 0 110-2h12.586l-3.293-3.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+						</svg>
+					</a>
 				</div>
 			</div>
 		</div>
@@ -200,6 +212,7 @@ const allTags = Array.from(new Set(books.flatMap((b) => b.tags || []))).sort((a,
 	const modalDesc = document.getElementById("modal-desc");
 	const modalRec = document.getElementById("modal-rec");
 	const modalRecContainer = document.getElementById("modal-rec-container");
+	const modalReviewLink = document.getElementById("modal-review-link") as HTMLAnchorElement;
 
 	// Filter Logic
 	let currentTag = "all";
@@ -256,6 +269,16 @@ const allTags = Array.from(new Set(books.flatMap((b) => b.tags || []))).sort((a,
 				modalRecContainer?.classList.remove("hidden");
 			} else {
 				modalRecContainer?.classList.add("hidden");
+			}
+
+			// Review Link
+			if (data.reviewSlug && modalReviewLink) {
+				modalReviewLink.href = `/reviews/${data.reviewSlug}`;
+				modalReviewLink.classList.remove("hidden");
+				modalReviewLink.classList.add("flex");
+			} else {
+				modalReviewLink?.classList.add("hidden");
+				modalReviewLink?.classList.remove("flex");
 			}
 
 			// Rating

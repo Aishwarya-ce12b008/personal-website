@@ -11,6 +11,7 @@ export interface Book {
 	rating?: number; // 1-5
 	recommendation?: string; // Why you recommend it
 	yearRead?: number;
+	reviewSlug?: string;
 }
 
 export const books: Book[] = [
@@ -19,7 +20,7 @@ export const books: Book[] = [
 		author: "Adam Wathan & Steve Schoger",
 		cover: "https://www.refactoringui.com/_next/static/media/book.43eb3b9aec83fb89.png",
 		status: "read",
-		tags: ["Building Products", "Design"],
+		tags: ["Building Products"],
 		rating: 3.5,
 		description:
 			"A design handbook for developers. No fluff, just practical tactics for making your UI look good.",
@@ -40,6 +41,7 @@ export const books: Book[] = [
 		recommendation:
 			"This book completely reframed how I view human society. The concept of 'imagined realities'—that money, nations, and laws only exist because we collectively believe in them—is a powerful lens for understanding the world. It makes you question which of your own deeply held beliefs are just stories we've agreed to tell.",
 		yearRead: 2020,
+		reviewSlug: "sapiens-review",
 	},
 	{
 		title: "Seven Brief Lessons on Physics",
@@ -86,7 +88,7 @@ export const books: Book[] = [
 		isbn: "9781501124020",
 		cover: "https://d28hgpri8am2if.cloudfront.net/book_images/onix/cvr9781501124020/principles-9781501124020_hr.jpg",
 		status: "wishlist",
-		tags: ["Building Teams", "Mind & Machine"],
+		tags: ["Lives well lived"],
 		rating: 5,
 		description:
 			"Ray Dalio shares the unconventional principles he used to create unique results in life and business.",
@@ -169,7 +171,7 @@ export const books: Book[] = [
 		isbn: "9780061241895",
 		cover: "https://m.media-amazon.com/images/I/71SPjJ+UnLL.jpg",
 		status: "read",
-		tags: ["Mind & Machine", "Building Products"],
+		tags: ["Mind & Machine", "Building Teams"],
 		rating: 5,
 		description:
 			"Explains the psychology of why people say 'yes'—and how to apply these understandings.",

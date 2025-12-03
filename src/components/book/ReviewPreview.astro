@@ -1,0 +1,26 @@
+---
+import type { CollectionEntry } from "astro:content";
+import FormattedDate from "@/components/FormattedDate.astro";
+import type { HTMLTag, Polymorphic } from "astro/types";
+
+type Props<Tag extends HTMLTag> = Polymorphic<{ as: Tag }> & {
+	review: CollectionEntry<"review">;
+	withDesc?: boolean;
+};
+
+const { as: Tag = "div", review, withDesc = false } = Astro.props;
+---
+
+<FormattedDate
+	class="min-w-30 font-semibold text-gray-600 dark:text-gray-400"
+	date={review.data.publishDate}
+/>
+<Tag>
+	<a class="cactus-link" data-astro-prefetch href={`/reviews/${review.id}/`}>
+		{review.data.title}
+	</a>
+    <span class="text-sm text-textColor/60 block mt-1">on <em>{review.data.bookTitle}</em></span>
+</Tag>
+{withDesc && <q class="line-clamp-3 italic">{review.data.description}</q>}
+
+

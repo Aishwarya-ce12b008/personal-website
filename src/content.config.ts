@@ -45,4 +45,16 @@ const note = defineCollection({
 	}),
 });
 
-export const collections = { post, note };
+const review = defineCollection({
+	loader: glob({ base: "./src/content/review", pattern: "**/*.{md,mdx}" }),
+	schema: baseSchema.extend({
+		description: z.string().optional(),
+		publishDate: z
+			.string()
+			.or(z.date())
+			.transform((val) => new Date(val)),
+		bookTitle: z.string(),
+	}),
+});
+
+export const collections = { post, note, review };

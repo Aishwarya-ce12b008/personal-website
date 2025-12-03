@@ -1,0 +1,45 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "public/uploads"
+public_folder: "/uploads"
+
+collections:
+  - name: "post"
+    label: "Posts"
+    folder: "src/content/post"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string", pattern: ['.{1,60}', "Must be 60 characters or less"] }
+      - { label: "Description", name: "description", widget: "string" }
+      - { label: "Publish Date", name: "publishDate", widget: "datetime", format: "YYYY-MM-DD" }
+      - { label: "Draft", name: "draft", widget: "boolean", default: false, required: false }
+      - { label: "OG Image URL", name: "ogImage", widget: "string", required: false }
+      - { label: "Tags", name: "tags", widget: "list", default: [], required: false }
+      - { label: "Body", name: "body", widget: "markdown" }
+
+  - name: "note"
+    label: "Notes"
+    folder: "src/content/note"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string", pattern: ['.{1,60}', "Must be 60 characters or less"] }
+      - { label: "Description", name: "description", widget: "string", required: false }
+      - { label: "Publish Date", name: "publishDate", widget: "datetime", format: "YYYY-MM-DDTHH:mm:ssZ" }
+      - { label: "Body", name: "body", widget: "markdown" }
+
+  - name: "review"
+    label: "Reviews"
+    folder: "src/content/review"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string", pattern: ['.{1,60}', "Must be 60 characters or less"] }
+      - { label: "Book Title", name: "bookTitle", widget: "string" }
+      - { label: "Description", name: "description", widget: "string", required: false }
+      - { label: "Publish Date", name: "publishDate", widget: "datetime", format: "YYYY-MM-DD" }
+      - { label: "Body", name: "body", widget: "markdown" }
+

@@ -1,0 +1,51 @@
+---
+import { type CollectionEntry, getCollection, render } from "astro:content";
+import BaseLayout from "@/layouts/Base.astro";
+import FormattedDate from "@/components/FormattedDate.astro";
+
+export async function getStaticPaths() {
+	const reviews = await getCollection("review");
+	return reviews.map((review) => ({
+		params: { slug: review.id },
+		props: { review },
+	}));
+}
+
+interface Props {
+	review: CollectionEntry<"review">;
+}
+
+const { review } = Astro.props;
+const { title, description, publishDate, bookTitle } = review.data;
+const { Content } = await render(review);
+---
+
+<BaseLayout
+	meta={{
+		title,
+		description,
+		articleDate: publishDate.toISOString(),
+	}}
+>
+	<article class="grow break-words">
+		<div class="mb-8">
+			<h1 class="text-4xl font-bold text-global-text mb-4 tracking-tight">
+				{title}
+			</h1>
+			<div class="flex flex-wrap items-center gap-x-3 gap-y-2 text-sm text-textColor/60">
+				<p class="font-semibold">
+					Review of <span class="text-accent">{bookTitle}</span>
+				</p>
+				<span>•</span>
+				<FormattedDate date={publishDate} />
+			</div>
+		</div>
+		<div
+			class="prose prose-base prose-headings:font-semibold prose-headings:text-accent-2 prose-th:before:content-none prose-img:border prose-img:border-zinc-200 dark:prose-img:border-zinc-700 prose-img:rounded-md"
+		>
+			<Content />
+		</div>
+	</article>
+</BaseLayout>
+
+
