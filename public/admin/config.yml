@@ -1,5 +1,6 @@
 backend:
-  name: git-gateway
+  name: github
+  repo: Mani19/personal-blog
   branch: main
 
 media_folder: "public/uploads"
@@ -42,4 +43,3 @@ collections:
       - { label: "Description", name: "description", widget: "string", required: false }
       - { label: "Publish Date", name: "publishDate", widget: "datetime", format: "YYYY-MM-DD" }
       - { label: "Body", name: "body", widget: "markdown" }
-
