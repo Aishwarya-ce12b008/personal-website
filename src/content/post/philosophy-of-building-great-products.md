@@ -1,11 +1,13 @@
 ---
-title: Philosophy of building great products
+title: What it takes to build great products?
 description: Test description
 publishDate: 2025-12-12
 draft: true
 ogImage: ''
 tags: []
 ---
+Lets start by defining great products.
+
 1. It takes time. Whether you like it r not. There's no shortcut. You can't have quality & velocity both. You can insanely improve velocity by narrowing design system, working with Figma Code Connect, Figma MCP etc, but there's no workaround in terms spending the time for craftsmanship.
 2. Don't make the user think.
 3. For the 20% of product that users use 80%, think deeply about defaults, nudges, and be okay with hardcoding. It goes a long way in terms of how people feel.
