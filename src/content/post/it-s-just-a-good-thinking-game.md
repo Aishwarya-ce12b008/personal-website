@@ -3,7 +3,7 @@ title: It's just a good thinking game!
 description: My thoughts on the Thinking Game Documentary
 publishDate: 2025-12-03
 draft: false
-ogImage: https://storage.googleapis.com/gweb-uniblog-publish-prod/images/demis-hassabis-podcast.max-1440x810.png
+ogImage: https://i.pinimg.com/736x/cc/84/2e/cc842eaab938011ef4669571b4b2fddb.jpg
 tags: []
 ---
 Decades ago, sitting in a small house in Hyderabad, I spent hours playing _Rollercoaster Tycoon_. It was my sister's favorite game. Even then, I couldn't quite articulate why I loved it, but the system felt intelligent. The simulations felt real; the actions had a heartbeat.
