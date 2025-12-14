@@ -2,28 +2,54 @@
 title: It's just a good thinking game!
 description: My thoughts on the Thinking Game Documentary
 publishDate: 2025-12-03
-draft: true
+draft: false
 ogImage: https://storage.googleapis.com/gweb-uniblog-publish-prod/images/demis-hassabis-podcast.max-1440x810.png
 tags: []
 ---
-My takeaways:
+Decades ago, sitting in a small house in Hyderabad, I spent hours playing _Rollercoaster Tycoon_. It was my sister's favorite game. Even then, I couldn't quite articulate why I loved it, but the system felt intelligent. The simulations felt real; the actions had a heartbeat.
 
-1. Demis is one of the few people who created a life mission early on and made every single decision in the last 20 years around it. It brought in a lot of focus and dramatically increased his chance of success. He even sold the company at a lower valuation at an un-opportune time because his mission was clear.
+![](/uploads/4c3604809342ba992e0e0c38319ad088.jpg)
 
-2. Deepmind office is really really cool. We don't have offices like that in India.
+I didn't know it at the time, but I was experiencing the downstream effects of Demis Hassabis’s mind. Before he was trying to solve AGI, Demis worked on _Theme Park_, the game that inspired the genre. It feels like a full-circle moment to realize that the person who made my childhood games feel "alive" is now the person closest to creating actual artificial life.
 
-3. There's a beautiful realisation Demis has around how so many intelligent people end up spending a great deal of their life playing chess vs if they put their minds together, they can solve cancer. I also increases feel this is true about high qualified folks working on engagement increasing apps.
+I recently watched the documentary _The Thinking Game_, and I haven't been able to stop thinking about it. It chronicles a mind tackling humanity's hardest problem with absolute clarity of purpose.
 
-4. Deepmind might feel like a breakout success but they had great access, network very very early on - even without being based in SF. Peter Thiel was a seed investor and Elon Musk was Series A. In fact Elon Musk bid against Google in their acquisition and since Demis chose Google, Elon started OpenAI to counter it.
+Here is what stuck with me:
 
-5. Good friendships go a long way. Demis's friends from college Shane, David are still the core team of DeepMind.
+### The 20-Year Mission
 
-6. Reinforcement Learning is a beautiful thing. It might be inefficient but an amazing thing. 
+The most striking thing about Demis is his singular focus. Most founders pivot—not just products, but entire industries. Demis has been executing a mission he defined twenty years ago.
 
-7. The problem statements that Demis ends up picking have very familiar patterns. They are incredibly hard that people think they aren't solvable, the best in class solution at the time of picking the problem would have a single digit win %, 
+He coined the term AGI and believed it was solvable in his lifetime long before the ingredients existed. He started this mission before the iPhone was invented. Neither the data nor the compute required for current LLMs existed, but he had the conviction.
 
-8. You can get really far solving problems without any domain experience using RL. Ex: AlphaGo had very little Go players overseeing it. The first few versions of AlphaFold (that were still world leading) had no domain expert on the team and later on was supported by 2 member domain expert team. The implications for this are huge. You can solve domains if you can build a good model of the constraints, rules and what winning looks like.
+Every decision he has made—including selling DeepMind to Google—was calculated to serve that mission. He sold at a lower valuation, at a time that looked inopportune to outsiders, simply because Google offered the best sanctuary for his research. His entire life revolved around a single heuristic: "Is this going to help us get to AGI?"
 
-9. 
+### The Misallocation of Genius
 
-Watch the [The thinking game](https://youtu.be/d95J8yzvjbQ) documentary and let me know how you liked it.
+There is a haunting realization Demis shares in the film. He looks at the world's smartest people spending their lives mastering games like Chess and wonders: "If they put their minds together, could they have solved cancer by now?"
+
+This hit hard. I increasingly feel the same way about highly qualified engineers. We have the brightest minds of a generation spending their prime years optimizing engagement bait and building mechanisms to keep users doom-scrolling.
+
+There are real problems—hunger, health, infant mortality, the energy crisis. I wish more problem-solvers applied their skills to moving hard problems and pushing humanity forward, rather than optimizing for clicks.
+
+### Access and “The Counter-Move”
+
+Demis got a few things right early on. He realized that AGI couldn't be built in an academic lab; it had to be a company. It was going to be expensive, and he needed serious money. He wasn't a Wozniak type, content to just do research. He was out meeting people and raising capital.
+
+When he failed to raise money in London, he traveled to Silicon Valley. He knew Peter Thiel was hosting a party, so he prepared a pitch and bonded with him over chess strategy. Thiel became a seed investor; Elon Musk came in at Series A.
+
+In fact, Musk actually bid against Google for the DeepMind acquisition. When Demis eventually chose Google, Elon founded OpenAI specifically as a counter-move.
+
+### The Beauty of Reinforcement Learning
+
+DeepMind proves that if you can build a good model of constraints, rules, and what "winning" looks like, you don't necessarily need domain experts.
+
+Every domain is made of first principles. If you can model a system and solve it from the ground up, that is true intelligence, devoid of human bias. AlphaGo had very few Go players overseeing it. The first world-leading versions of AlphaFold had zero biologists on the team.
+
+AlphaZero played [chess moves that were truly novel](https://www.youtube.com/watch?v=lFXJWPhDsSY)—ideas that most human players had discarded. This is the beauty of Reinforcement Learning. It might be computationally inefficient, but it allows you to bypass domain dogma. DeepMind turned biology into a game, and then built an AI to win it.
+
+Just as AlphaZero discovered new moves in Chess, I suspect we will arrive at novel conclusions when we apply RL to the real world. For example: what if RL could tell us that when you have a fever, it is optimal not to take a tablet, because sustaining the fever is actually the cure?
+
+Despite the cold logic of AI, DeepMind is built on warm foundations. The core team—Demis, Shane, and David—are college friends. You can see the shared sense of purpose as they work together. It is a life of deep dedication. I really hope they win.
+
+(I also highly recommend checking out the [_AlphaGo_ documentary](https://www.youtube.com/watch?v=WXuK6gekU1Y&t=4834s) by the same makers. It is captivating, and I’m grateful it is available for free. I hope it inspires more people to live a purposeful life.)
