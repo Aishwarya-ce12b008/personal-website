@@ -13,19 +13,20 @@ const post = defineCollection({
 	loader: glob({ base: "./src/content/post", pattern: "**/*.{md,mdx}" }),
 	schema: ({ image }) =>
 		baseSchema.extend({
-			description: z.string(),
+			description: z.string().optional(),
 			coverImage: z
 				.object({
 					alt: z.string(),
 					src: image(),
 				})
 				.optional(),
-			draft: z.boolean().default(false),
+			draft: z.boolean().default(true),
 			ogImage: z.string().optional(),
 			tags: z.array(z.string()).default([]).transform(removeDupsAndLowerCase),
 			publishDate: z
 				.string()
 				.or(z.date())
+				.default(() => new Date())
 				.transform((val) => new Date(val)),
 			updatedDate: z
 				.string()
@@ -41,6 +42,7 @@ const note = defineCollection({
 		publishDate: z
 			.string()
 			.datetime({ offset: true }) // Ensures ISO 8601 format with offsets allowed (e.g. "2024-01-01T00:00:00Z" and "2024-01-01T00:00:00+02:00")
+			.default(() => new Date().toISOString())
 			.transform((val) => new Date(val)),
 	}),
 });
@@ -52,6 +54,7 @@ const review = defineCollection({
 		publishDate: z
 			.string()
 			.or(z.date())
+			.default(() => new Date())
 			.transform((val) => new Date(val)),
 		bookTitle: z.string(),
 	}),

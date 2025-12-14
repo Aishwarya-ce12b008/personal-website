@@ -13,10 +13,15 @@ collections:
     create: true
     slug: "{{slug}}"
     fields:
-      - { label: "Title", name: "title", widget: "string", pattern: ['.{1,60}', "Must be 60 characters or less"] }
-      - { label: "Description", name: "description", widget: "string" }
+      - {
+          label: "Title",
+          name: "title",
+          widget: "string",
+          pattern: [".{1,60}", "Must be 60 characters or less"],
+        }
+      - { label: "Description", name: "description", widget: "string", required: false }
       - { label: "Publish Date", name: "publishDate", widget: "datetime", format: "YYYY-MM-DD" }
-      - { label: "Draft", name: "draft", widget: "boolean", default: false, required: false }
+      - { label: "Draft", name: "draft", widget: "boolean", default: true, required: false }
       - { label: "OG Image URL", name: "ogImage", widget: "string", required: false }
       - { label: "Tags", name: "tags", widget: "list", default: [], required: false }
       - { label: "Body", name: "body", widget: "markdown" }
@@ -27,9 +32,19 @@ collections:
     create: true
     slug: "{{slug}}"
     fields:
-      - { label: "Title", name: "title", widget: "string", pattern: ['.{1,60}', "Must be 60 characters or less"] }
+      - {
+          label: "Title",
+          name: "title",
+          widget: "string",
+          pattern: [".{1,60}", "Must be 60 characters or less"],
+        }
       - { label: "Description", name: "description", widget: "string", required: false }
-      - { label: "Publish Date", name: "publishDate", widget: "datetime", format: "YYYY-MM-DDTHH:mm:ssZ" }
+      - {
+          label: "Publish Date",
+          name: "publishDate",
+          widget: "datetime",
+          format: "YYYY-MM-DDTHH:mm:ssZ",
+        }
       - { label: "Body", name: "body", widget: "markdown" }
 
   - name: "review"
@@ -38,7 +53,12 @@ collections:
     create: true
     slug: "{{slug}}"
     fields:
-      - { label: "Title", name: "title", widget: "string", pattern: ['.{1,60}', "Must be 60 characters or less"] }
+      - {
+          label: "Title",
+          name: "title",
+          widget: "string",
+          pattern: [".{1,60}", "Must be 60 characters or less"],
+        }
       - { label: "Book Title", name: "bookTitle", widget: "string" }
       - { label: "Description", name: "description", widget: "string", required: false }
       - { label: "Publish Date", name: "publishDate", widget: "datetime", format: "YYYY-MM-DD" }
