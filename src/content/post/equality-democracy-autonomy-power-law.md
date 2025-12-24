@@ -7,3 +7,5 @@ ogImage: ''
 tags: []
 ---
 Excited to write this hv
+
+https://en.wikipedia.org/wiki/Power_law
