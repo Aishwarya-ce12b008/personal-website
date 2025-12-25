@@ -1,12 +1,10 @@
 import { collection, config, fields } from "@keystatic/core";
 
-// Use GitHub storage when KEYSTATIC_GITHUB_CLIENT_ID is set (production)
-const storage = process.env.KEYSTATIC_GITHUB_CLIENT_ID
-	? {
-			kind: "github" as const,
-			repo: "Mani19/personal-blog" as const,
-		}
-	: { kind: "local" as const };
+// Always use GitHub storage - Keystatic handles local vs production automatically
+const storage = {
+	kind: "github" as const,
+	repo: "Mani19/personal-blog" as const,
+};
 
 export default config({
 	storage,
