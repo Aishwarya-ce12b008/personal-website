@@ -107,6 +107,9 @@ export default defineConfig({
 			WEBMENTION_API_KEY: envField.string({ context: "server", access: "secret", optional: true }),
 			WEBMENTION_URL: envField.string({ context: "client", access: "public", optional: true }),
 			WEBMENTION_PINGBACK: envField.string({ context: "client", access: "public", optional: true }),
+			KEYSTATIC_GITHUB_CLIENT_ID: envField.string({ context: "server", access: "secret", optional: true }),
+			KEYSTATIC_GITHUB_CLIENT_SECRET: envField.string({ context: "server", access: "secret", optional: true }),
+			KEYSTATIC_SECRET: envField.string({ context: "server", access: "secret", optional: true }),
 		},
 	},
 });

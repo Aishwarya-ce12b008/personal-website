@@ -9,6 +9,7 @@ const storage = import.meta.env.DEV
 				owner: "Mani19",
 				name: "personal-blog",
 			},
+			branchPrefix: "keystatic/",
 		};
 
 export default config({
