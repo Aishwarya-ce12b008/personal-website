@@ -13,20 +13,19 @@ const post = defineCollection({
 	loader: glob({ base: "./src/content/post", pattern: "**/*.{md,mdx}" }),
 	schema: ({ image }) =>
 		baseSchema.extend({
-			description: z.string().optional(),
+			description: z.string(),
 			coverImage: z
 				.object({
 					alt: z.string(),
 					src: image(),
 				})
 				.optional(),
-			draft: z.boolean().default(true),
+			draft: z.boolean().default(false),
 			ogImage: z.string().optional(),
 			tags: z.array(z.string()).default([]).transform(removeDupsAndLowerCase),
 			publishDate: z
 				.string()
 				.or(z.date())
-				.default(() => new Date())
 				.transform((val) => new Date(val)),
 			updatedDate: z
 				.string()
@@ -42,7 +41,6 @@ const note = defineCollection({
 		publishDate: z
 			.string()
 			.datetime({ offset: true }) // Ensures ISO 8601 format with offsets allowed (e.g. "2024-01-01T00:00:00Z" and "2024-01-01T00:00:00+02:00")
-			.default(() => new Date().toISOString())
 			.transform((val) => new Date(val)),
 	}),
 });
@@ -54,25 +52,9 @@ const review = defineCollection({
 		publishDate: z
 			.string()
 			.or(z.date())
-			.default(() => new Date())
 			.transform((val) => new Date(val)),
 		bookTitle: z.string(),
 	}),
 });
 
-const video = defineCollection({
-	loader: glob({ base: "./src/content/video", pattern: "**/*.{md,mdx}" }),
-	schema: baseSchema.extend({
-		youtubeUrl: z.string(), // Full YouTube URL
-		channel: z.string().optional(),
-		duration: z.string().optional(), // e.g., "12 min", "1h 30m"
-		tags: z.array(z.string()).default([]).transform(removeDupsAndLowerCase),
-		publishDate: z
-			.string()
-			.or(z.date())
-			.default(() => new Date())
-			.transform((val) => new Date(val)),
-	}),
-});
-
-export const collections = { post, note, review, video };
+export const collections = { post, note, review };

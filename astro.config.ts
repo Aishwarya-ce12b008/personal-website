@@ -1,7 +1,10 @@
 import fs from "node:fs";
 import mdx from "@astrojs/mdx";
+import react from "@astrojs/react";
 import sitemap from "@astrojs/sitemap";
+import vercel from "@astrojs/vercel";
 import tailwind from "@tailwindcss/vite";
+import keystatic from "@keystatic/astro";
 import expressiveCode from "astro-expressive-code";
 import icon from "astro-icon";
 import robotsTxt from "astro-robots-txt";
@@ -27,7 +30,10 @@ export default defineConfig({
 	image: {
 		domains: ["webmention.io"],
 	},
+	adapter: vercel(),
 	integrations: [
+		react(),
+		keystatic(),
 		expressiveCode(expressiveCodeOptions),
 		icon(),
 		sitemap(),
