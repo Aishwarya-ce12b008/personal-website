@@ -5,10 +5,10 @@
 4 silly config load:file:/Users/mani/Work/Personal-Projects/manikantha.com/.npmrc
 5 silly config load:file:/Users/mani/.npmrc
 6 silly config load:file:/Users/mani/.nvm/versions/node/v20.10.0/etc/npmrc
-7 verbose title npm exec vercel --prod
-8 verbose argv "exec" "--" "vercel" "--prod"
-9 verbose logfile logs-max:10 dir:/Users/mani/Work/Personal-Projects/manikantha.com/.npm-cache/_logs/2025-12-25T14_49_04_018Z-
-10 verbose logfile /Users/mani/Work/Personal-Projects/manikantha.com/.npm-cache/_logs/2025-12-25T14_49_04_018Z-debug-0.log
+7 verbose title npm exec vercel env add KEYSTATIC_SECRET preview
+8 verbose argv "exec" "--" "vercel" "env" "add" "KEYSTATIC_SECRET" "preview"
+9 verbose logfile logs-max:10 dir:/Users/mani/Work/Personal-Projects/manikantha.com/.npm-cache/_logs/2025-12-25T15_07_27_964Z-
+10 verbose logfile /Users/mani/Work/Personal-Projects/manikantha.com/.npm-cache/_logs/2025-12-25T15_07_27_964Z-debug-0.log
 11 silly logfile start cleaning logs, removing 1 files
 12 silly logfile done cleaning log files
 13 verbose cwd /Users/mani/Work/Personal-Projects/manikantha.com
