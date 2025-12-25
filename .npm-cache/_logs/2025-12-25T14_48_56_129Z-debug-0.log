@@ -7,12 +7,13 @@
 6 silly config load:file:/Users/mani/.nvm/versions/node/v20.10.0/etc/npmrc
 7 verbose title npm exec vercel env add KEYSTATIC_GITHUB_CLIENT_SECRET production
 8 verbose argv "exec" "--" "vercel" "env" "add" "KEYSTATIC_GITHUB_CLIENT_SECRET" "production"
-9 verbose logfile logs-max:10 dir:/Users/mani/Work/Personal-Projects/manikantha.com/.npm-cache/_logs/2025-12-25T14_33_45_558Z-
-10 verbose logfile /Users/mani/Work/Personal-Projects/manikantha.com/.npm-cache/_logs/2025-12-25T14_33_45_558Z-debug-0.log
-11 silly logfile done cleaning log files
-12 verbose cwd /Users/mani/Work/Personal-Projects/manikantha.com
-13 verbose os Darwin 25.0.0
-14 verbose node v20.10.0
-15 verbose npm  v10.8.2
-16 verbose exit 0
-17 info ok
+9 verbose logfile logs-max:10 dir:/Users/mani/Work/Personal-Projects/manikantha.com/.npm-cache/_logs/2025-12-25T14_48_56_129Z-
+10 verbose logfile /Users/mani/Work/Personal-Projects/manikantha.com/.npm-cache/_logs/2025-12-25T14_48_56_129Z-debug-0.log
+11 silly logfile start cleaning logs, removing 1 files
+12 silly logfile done cleaning log files
+13 verbose cwd /Users/mani/Work/Personal-Projects/manikantha.com
+14 verbose os Darwin 25.0.0
+15 verbose node v20.10.0
+16 verbose npm  v10.8.2
+17 verbose exit 0
+18 info ok
