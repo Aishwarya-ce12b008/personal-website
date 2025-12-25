@@ -1,5 +1,5 @@
 ---
-title: "Lenny's Podcast"
+title: "The man behind Slack — Stewart Butterfield"
 youtubeUrl: "https://youtu.be/kLe-zy5r0Mk"
 channel: "Lenny's Podcast"
 duration: "45 min"
