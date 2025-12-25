@@ -3,7 +3,10 @@ import { collection, config, fields } from "@keystatic/core";
 // Always use GitHub storage - Keystatic handles local vs production automatically
 const storage = {
 	kind: "github" as const,
-	repo: "Mani19/personal-blog" as const,
+	repo: {
+		owner: "Mani19",
+		name: "personal-blog",
+	},
 };
 
 export default config({
