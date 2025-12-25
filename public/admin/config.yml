@@ -63,3 +63,28 @@ collections:
       - { label: "Description", name: "description", widget: "string", required: false }
       - { label: "Publish Date", name: "publishDate", widget: "datetime", format: "YYYY-MM-DD" }
       - { label: "Body", name: "body", widget: "markdown" }
+
+  - name: "video"
+    label: "Videos"
+    folder: "src/content/video"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - {
+          label: "Title",
+          name: "title",
+          widget: "string",
+          pattern: [".{1,60}", "Must be 60 characters or less"],
+          hint: "Your title for this video (can differ from YouTube title)",
+        }
+      - {
+          label: "YouTube URL",
+          name: "youtubeUrl",
+          widget: "string",
+          hint: "Full YouTube URL (e.g., https://www.youtube.com/watch?v=...)",
+        }
+      - { label: "Channel", name: "channel", widget: "string", required: false }
+      - { label: "Duration", name: "duration", widget: "string", required: false, hint: "e.g., 12 min, 1h 30m" }
+      - { label: "Tags", name: "tags", widget: "list", default: [], required: false }
+      - { label: "Date Added", name: "publishDate", widget: "datetime", format: "YYYY-MM-DD" }
+      - { label: "My Takeaways", name: "body", widget: "markdown", required: false, hint: "Your thoughts and takeaways from this video" }

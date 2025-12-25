@@ -60,4 +60,19 @@ const review = defineCollection({
 	}),
 });
 
-export const collections = { post, note, review };
+const video = defineCollection({
+	loader: glob({ base: "./src/content/video", pattern: "**/*.{md,mdx}" }),
+	schema: baseSchema.extend({
+		youtubeUrl: z.string(), // Full YouTube URL
+		channel: z.string().optional(),
+		duration: z.string().optional(), // e.g., "12 min", "1h 30m"
+		tags: z.array(z.string()).default([]).transform(removeDupsAndLowerCase),
+		publishDate: z
+			.string()
+			.or(z.date())
+			.default(() => new Date())
+			.transform((val) => new Date(val)),
+	}),
+});
+
+export const collections = { post, note, review, video };

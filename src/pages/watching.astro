@@ -1,0 +1,167 @@
+---
+import { getCollection } from "astro:content";
+import VideoCard from "@/components/video/VideoCard.astro";
+import PageLayout from "@/layouts/Base.astro";
+
+const meta = {
+	description: "Videos that sparked ideas, changed perspectives, or just made me think.",
+	title: "📺 The Feed",
+};
+
+// Get all videos, sorted by publish date (newest first)
+const allVideos = await getCollection("video");
+const videos = allVideos.sort((a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf());
+
+// Extract first paragraph from body as takeaway preview
+function getTakeawayPreview(body: string | undefined): string | undefined {
+	if (!body) return undefined;
+	const cleaned = body.trim();
+	if (!cleaned) return undefined;
+	// Get first paragraph or first 200 chars
+	const firstPara = cleaned.split('\n\n')[0];
+	return firstPara.length > 200 ? firstPara.slice(0, 200) + '…' : firstPara;
+}
+
+// Get unique tags for filter
+const allTags = [...new Set(videos.flatMap(v => v.data.tags || []))].sort();
+---
+
+<PageLayout meta={meta} maxWidth="max-w-6xl">
+	<!-- Header with personality -->
+	<div class="mb-12">
+		<div class="relative">
+			<h1 class="title mb-4 flex items-center gap-3">
+				<span class="inline-block animate-pulse">▶</span>
+				The Feed
+			</h1>
+			<p class="text-global-text/70 max-w-xl leading-relaxed">
+				Videos that sparked ideas, changed perspectives, or just made me think. 
+				Click to play, hover for vibes.
+			</p>
+		</div>
+
+		<!-- Tag filters -->
+		{allTags.length > 0 && (
+			<div class="mt-6 flex flex-wrap gap-2">
+				<button 
+					class="tag-filter active rounded-full px-3 py-1 text-xs transition-all border border-accent/30 bg-accent/10 text-accent"
+					data-tag="all"
+				>
+					all
+				</button>
+				{allTags.map((tag) => (
+					<button 
+						class="tag-filter rounded-full px-3 py-1 text-xs transition-all border border-global-text/20 text-global-text/60 hover:border-accent/30 hover:text-accent"
+						data-tag={tag}
+					>
+						{tag}
+					</button>
+				))}
+			</div>
+		)}
+	</div>
+
+	<!-- Video Grid -->
+	{videos.length > 0 ? (
+		<div class="video-grid grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+			{videos.map((video, index) => (
+				<div class="video-item" data-tags={JSON.stringify(video.data.tags || [])}>
+					<VideoCard
+						title={video.data.title}
+						youtubeUrl={video.data.youtubeUrl}
+						channel={video.data.channel}
+						duration={video.data.duration}
+						takeaway={getTakeawayPreview(video.body)}
+						tags={video.data.tags}
+						index={index}
+					/>
+				</div>
+			))}
+		</div>
+	) : (
+		<div class="flex flex-col items-center justify-center py-20 text-center">
+			<div class="text-6xl mb-4 opacity-50">📺</div>
+			<p class="text-global-text/50">No videos yet. Add some through the CMS!</p>
+		</div>
+	)}
+
+	<!-- Video count -->
+	{videos.length > 0 && (
+		<div class="mt-12 pt-8 border-t border-global-text/10 text-center">
+			<p class="text-global-text/40 text-xs">
+				{videos.length} video{videos.length !== 1 ? 's' : ''} in the collection
+			</p>
+		</div>
+	)}
+</PageLayout>
+
+<style>
+	/* Ambient glow effect behind the grid */
+	.video-grid {
+		position: relative;
+	}
+
+	.video-grid::before {
+		content: '';
+		position: absolute;
+		top: 10%;
+		left: 50%;
+		transform: translateX(-50%);
+		width: 60%;
+		height: 40%;
+		background: radial-gradient(ellipse, var(--color-accent) 0%, transparent 70%);
+		opacity: 0.03;
+		pointer-events: none;
+		filter: blur(60px);
+	}
+
+	.tag-filter {
+		cursor: pointer;
+	}
+
+	.tag-filter.active {
+		border-color: var(--color-accent);
+		background: color-mix(in oklch, var(--color-accent) 15%, transparent);
+		color: var(--color-accent);
+	}
+
+	.video-item {
+		transition: opacity 0.3s ease, transform 0.3s ease;
+	}
+
+	.video-item.hidden {
+		display: none;
+	}
+</style>
+
+<script>
+	function initTagFilters() {
+		const filterButtons = document.querySelectorAll('.tag-filter');
+		const videoItems = document.querySelectorAll('.video-item');
+
+		filterButtons.forEach((btn) => {
+			btn.addEventListener('click', () => {
+				const tag = btn.getAttribute('data-tag');
+
+				// Update active state
+				filterButtons.forEach((b) => b.classList.remove('active'));
+				btn.classList.add('active');
+
+				// Filter videos
+				videoItems.forEach((item) => {
+					const itemTags = JSON.parse(item.getAttribute('data-tags') || '[]');
+					
+					if (tag === 'all' || itemTags.includes(tag)) {
+						item.classList.remove('hidden');
+					} else {
+						item.classList.add('hidden');
+					}
+				});
+			});
+		});
+	}
+
+	initTagFilters();
+	document.addEventListener('astro:after-swap', initTagFilters);
+</script>
+
