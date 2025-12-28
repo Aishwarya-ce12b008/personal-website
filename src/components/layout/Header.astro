@@ -17,7 +17,7 @@ import {siteConfig} from "../../site.config";
 				class="me-3 h-10 w-6 sm:absolute sm:-start-18 sm:me-0 sm:h-20 sm:w-12 sm:top-1/2 sm:-translate-y-1/2"
 				fill="currentColor"
 				focusable="false"
-				viewBox="0 0 100 170"
+				viewBox="0 0 120 170"
 				xmlns="http://www.w3.org/2000/svg"
 			>
 				<title>Monogram A</title>
@@ -25,7 +25,22 @@ import {siteConfig} from "../../site.config";
 					d="M 45 10 L 90 160 L 70 160 L 63 125 L 34 125 L 25 160 L 5 160 L 45 10 Z M 48 55 L 39 105 L 60 105 Z"
 					fill="#FF5D01"
 				></path>
-				<circle cx="94" cy="150" r="6" fill="#FF5D01" />
+				<circle cx="108" cy="150" r="6" fill="#FF5D01" class="monogram-dot" />
+				<style>
+					.monogram-dot {
+						animation: dropBounce 1.5s ease-out backwards;
+						transform-box: fill-box;
+						transform-origin: center;
+					}
+					@keyframes dropBounce {
+						0% { transform: translateY(-100px); opacity: 0; animation-timing-function: ease-in; }
+						40% { transform: translateY(0); opacity: 1; animation-timing-function: ease-out; }
+						60% { transform: translateY(-20px); animation-timing-function: ease-in; }
+						80% { transform: translateY(0); animation-timing-function: ease-out; }
+						90% { transform: translateY(-5px); animation-timing-function: ease-in; }
+						100% { transform: translateY(0); }
+					}
+				</style>
 			</svg>
 			<!-- Old Cactus Logo (preserved)
 			<svg
