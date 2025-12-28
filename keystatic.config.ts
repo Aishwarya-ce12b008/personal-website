@@ -6,8 +6,8 @@ const storage = import.meta.env.DEV
 	: {
 			kind: "github" as const,
 			repo: {
-				owner: "Mani19",
-				name: "personal-blog",
+				owner: "Aishwarya-ce12b008",
+				name: "personal-website",
 			},
 			branchPrefix: "keystatic/",
 		};
@@ -16,7 +16,7 @@ export default config({
 	storage,
 	ui: {
 		brand: {
-			name: "Machines of Loving Grace",
+			name: "Ideas to Interface",
 		},
 	},
 	collections: {
