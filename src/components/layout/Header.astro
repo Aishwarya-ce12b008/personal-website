@@ -4,13 +4,30 @@ import { menuLinks } from "@/site.config";
 import {siteConfig} from "../../site.config";
 ---
 
-<header class="group relative mb-28 flex items-center sm:ps-18" id="main-header">
+<header class="group relative mb-20 flex items-center sm:ps-18" id="main-header">
 	<div class="flex sm:flex-col">
 		<a
 			aria-current={Astro.url.pathname === "/" ? "page" : false}
 			class="inline-flex items-center grayscale hover:filter-none sm:relative sm:inline-block"
 			href="/"
 		>
+			<!-- New Monogram "A" Logo -->
+			<svg
+				aria-hidden="true"
+				class="me-3 h-10 w-6 sm:absolute sm:-start-18 sm:me-0 sm:h-20 sm:w-12 sm:top-1/2 sm:-translate-y-1/2"
+				fill="currentColor"
+				focusable="false"
+				viewBox="0 0 100 170"
+				xmlns="http://www.w3.org/2000/svg"
+			>
+				<title>Monogram A</title>
+				<path
+					d="M 45 10 L 90 160 L 70 160 L 63 125 L 34 125 L 25 160 L 5 160 L 45 10 Z M 48 55 L 39 105 L 60 105 Z"
+					fill="#FF5D01"
+				></path>
+				<circle cx="94" cy="150" r="6" fill="#FF5D01" />
+			</svg>
+			<!-- Old Cactus Logo (preserved)
 			<svg
 				aria-hidden="true"
 				class="me-3 h-10 w-6 sm:absolute sm:-start-18 sm:me-0 sm:h-20 sm:w-12"
@@ -31,6 +48,7 @@ import {siteConfig} from "../../site.config";
 					fill="#53C68C"></path>
 				<path d="M45.334 240 0 213.334v120L45.334 360V240Z" fill="#B04304"></path>
 			</svg>
+			-->
 			<span class="text-xl font-bold tracking-tight sm:text-2xl">{siteConfig.title}</span>
 		</a>
 		<nav
