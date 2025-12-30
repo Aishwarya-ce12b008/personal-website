@@ -27,6 +27,7 @@ import rehypeUnwrapImages from "rehype-unwrap-images";
 // https://astro.build/config
 export default defineConfig({
 	site: siteConfig.url,
+	output: "server",
 	image: {
 		domains: ["webmention.io"],
 	},
