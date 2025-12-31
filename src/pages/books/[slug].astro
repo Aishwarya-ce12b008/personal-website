@@ -1,16 +1,20 @@
 ---
+import { getCollection } from "astro:content";
 import PageLayout from "@/layouts/Base.astro";
-import { books } from "@/data/books";
+import type { Book } from "@/data/books";
+import { getBookCover, getBookSlug } from "@/data/books";
 
-export function getStaticPaths() {
-	return books.map((book) => {
-		const slug = book.title
-			.toLowerCase()
-			.replace(/[^\w\s-]/g, "")
-			.replace(/[\s_-]+/g, "-")
-			.replace(/^-+|-+$/g, "");
+export async function getStaticPaths() {
+	const bookEntries = await getCollection("book");
+	return bookEntries.map((entry) => {
+		const book: Book = { 
+			...entry.data, 
+			title: entry.data.title,
+			description: entry.body?.split('\n')[0] || "",
+			recommendation: entry.body?.split('\n').slice(2).join('\n') || "",
+		};
 		return {
-			params: { slug },
+			params: { slug: getBookSlug(book.title) },
 			props: { book },
 		};
 	});
@@ -23,11 +27,7 @@ const meta = {
 	description: `Notes and review for ${book.title} by ${book.author}`,
 };
 
-const coverUrl = book.cover
-	? book.cover
-	: book.isbn
-		? `https://covers.openlibrary.org/b/isbn/${book.isbn}-L.jpg`
-		: "https://placehold.co/400x600?text=No+Cover";
+const coverUrl = getBookCover(book);
 ---
 
 <PageLayout meta={meta}>

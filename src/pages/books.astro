@@ -1,12 +1,22 @@
 ---
+import { getCollection } from "astro:content";
 import BookTable from "@/components/book/BookTable.astro";
 import ScrollHeader from "@/components/book/ScrollHeader.astro";
-import { books } from "@/data/books";
+import type { Book } from "@/data/books";
 import PageLayout from "@/layouts/Base.astro";
+
+const bookEntries = await getCollection("book");
+const books: Book[] = bookEntries.map((entry) => ({
+	...entry.data,
+	title: entry.data.title,
+	// Content body contains description and recommendation combined
+	description: entry.body?.split('\n')[0] || "",
+	recommendation: entry.body?.split('\n').slice(2).join('\n') || "",
+}));
 
 const meta = {
 	description: "A collection of books I've read, am reading, or hope to read soon.",
-	title: "📕 Mani's Bookshelf",
+	title: "📕 My Bookshelf",
 };
 ---
 

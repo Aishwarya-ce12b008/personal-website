@@ -141,5 +141,54 @@ export default config({
 				}),
 			},
 		}),
+
+		book: collection({
+			label: "Books",
+			path: "src/content/book/*",
+			format: { contentField: "content", data: "yaml" },
+			slugField: "title",
+			schema: {
+				title: fields.slug({
+					name: { label: "Title" },
+				}),
+				author: fields.text({
+					label: "Author",
+					validation: { isRequired: true },
+				}),
+				isbn: fields.text({
+					label: "ISBN",
+				}),
+				cover: fields.text({
+					label: "Cover URL",
+				}),
+				status: fields.select({
+					label: "Status",
+					options: [
+						{ label: "Read", value: "read" },
+						{ label: "Currently Reading", value: "reading" },
+						{ label: "Want to Read", value: "want-to-read" },
+						{ label: "Wishlist", value: "wishlist" },
+					],
+					defaultValue: "want-to-read",
+				}),
+				rating: fields.number({
+					label: "Rating (1-5)",
+				}),
+				tags: fields.array(fields.text({ label: "Tag" }), {
+					label: "Tags",
+					itemLabel: (props) => props.value,
+				}),
+				yearRead: fields.number({
+					label: "Year Read",
+				}),
+				reviewSlug: fields.text({
+					label: "Review Slug",
+				}),
+				content: fields.mdx({
+					label: "My Thoughts / Description",
+					extension: "md",
+				}),
+			},
+		}),
 	},
 });

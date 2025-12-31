@@ -4,7 +4,8 @@ import SocialList from "@/components/SocialList.astro";
 import PostPreview from "@/components/blog/PostPreview.astro";
 import BookCard from "@/components/BookCard.astro";
 import { getAllPosts } from "@/data/post";
-import { books } from "@/data/books";
+import type { Book } from "@/data/books";
+import { getBookCover } from "@/data/books";
 import PageLayout from "@/layouts/Base.astro";
 import { collectionDateSort } from "@/utils/date";
 
@@ -15,18 +16,18 @@ const allPostsByDate = allPosts
 	.sort(collectionDateSort)
 	.slice(0, MAX_POSTS) as CollectionEntry<"post">[];
 
-// Books - show recently read books
+// Books - show recently read books from content collection
+const bookEntries = await getCollection("book");
+const books: Book[] = bookEntries.map((entry) => ({
+	...entry.data,
+	title: entry.data.title,
+	description: entry.body?.split('\n')[0] || "",
+	recommendation: entry.body?.split('\n').slice(2).join('\n') || "",
+}));
 const recentBooks = books
 	.filter((book) => book.status === "read" && book.yearRead)
 	.sort((a, b) => (b.yearRead || 0) - (a.yearRead || 0))
 	.slice(0, 5);
-
-// Helper for Book Cover
-const getBookCover = (book: any) => {
-	if (book.cover) return book.cover;
-	if (book.isbn) return `https://covers.openlibrary.org/b/isbn/${book.isbn}-L.jpg`;
-	return "https://placehold.co/400x600?text=No+Cover";
-};
 ---
 
 <PageLayout meta={{ title: "Home" }}>

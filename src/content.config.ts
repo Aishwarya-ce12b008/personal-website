@@ -57,4 +57,19 @@ const review = defineCollection({
 	}),
 });
 
-export const collections = { post, note, review };
+const book = defineCollection({
+	loader: glob({ base: "./src/content/book", pattern: "**/*.{md,mdx}" }),
+	schema: z.object({
+		title: z.string(),
+		author: z.string(),
+		isbn: z.string().optional(),
+		cover: z.string().optional(),
+		status: z.enum(["read", "reading", "want-to-read", "wishlist"]),
+		rating: z.number().min(1).max(5).optional(),
+		tags: z.array(z.string()).default([]),
+		yearRead: z.number().optional(),
+		reviewSlug: z.string().optional(),
+	}),
+});
+
+export const collections = { post, note, review, book };
