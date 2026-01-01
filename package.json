@@ -6,7 +6,7 @@
 		"dev": "astro dev",
 		"start": "astro dev",
 		"build": "astro build",
-		"postbuild": "pagefind --site dist",
+		"postbuild": "echo 'Skipping pagefind in SSR mode'",
 		"preview": "astro preview",
 		"lint": "biome lint .",
 		"format": "pnpm run format:code && pnpm run format:imports",
