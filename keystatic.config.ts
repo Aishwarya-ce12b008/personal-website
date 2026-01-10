@@ -117,7 +117,7 @@ export default config({
 				title: fields.slug({
 					name: { label: "Title" },
 				}),
-				youtubeUrl: fields.url({
+				youtubeUrl: fields.text({
 					label: "YouTube URL",
 					validation: { isRequired: true },
 				}),

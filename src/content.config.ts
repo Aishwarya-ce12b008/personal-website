@@ -72,4 +72,19 @@ const book = defineCollection({
 	}),
 });
 
-export const collections = { post, note, review, book };
+const video = defineCollection({
+	loader: glob({ base: "./src/content/video", pattern: "**/*.{md,mdx}" }),
+	schema: z.object({
+		title: z.string(),
+		youtubeUrl: z.string(),
+		channel: z.string().optional(),
+		duration: z.string().optional(),
+		tags: z.array(z.string()).default([]),
+		publishDate: z
+			.string()
+			.or(z.date())
+			.transform((val) => new Date(val)),
+	}),
+});
+
+export const collections = { post, note, review, book, video };
