@@ -2,7 +2,6 @@
 title: "The Full Moon Coffee Shop"
 author: Mai Mochizuki
 isbn: "9781250289697"
-cover: https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1691592989i/123206268.jpg
 status: read
 rating: 2
 tags: []
