@@ -2,6 +2,7 @@
 title: "Birthday Girl"
 author: Haruki Murakami
 isbn: "9781524711474"
+cover: https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1518021504i/38358564.jpg
 status: read
 rating: 3
 tags: []

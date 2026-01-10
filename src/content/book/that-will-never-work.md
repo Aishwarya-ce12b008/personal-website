@@ -2,6 +2,7 @@
 title: "That Will Never Work"
 author: Marc Randolph
 isbn: "9780316530200"
+cover: https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1555365738i/44428221.jpg
 status: read
 rating: 5
 tags: []
