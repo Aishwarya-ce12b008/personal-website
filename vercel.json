@@ -1,5 +1,6 @@
 {
   "framework": "astro",
+  "buildCommand": "rm -rf .astro node_modules/.cache && npm run build",
   "redirects": [
     {
       "source": "/:path*",
