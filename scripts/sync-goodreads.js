@@ -71,6 +71,36 @@ function generateSlug(title) {
     .replace(/^-+|-+$/g, '');
 }
 
+// Normalize title for comparison (removes series info, punctuation, etc.)
+function normalizeTitle(title) {
+  return title
+    .toLowerCase()
+    .replace(/\s*\([^)]*\)\s*/g, '') // Remove parenthetical content like "(Series, #1)"
+    .replace(/[^\w\s]/g, '')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
+// Get all existing book titles from the content folder
+function getExistingBookTitles() {
+  const existingTitles = new Map();
+  
+  if (!fs.existsSync(BOOKS_DIR)) return existingTitles;
+  
+  const files = fs.readdirSync(BOOKS_DIR).filter(f => f.endsWith('.md'));
+  
+  for (const file of files) {
+    const content = fs.readFileSync(path.join(BOOKS_DIR, file), 'utf-8');
+    const titleMatch = content.match(/^title:\s*["']?(.+?)["']?\s*$/m);
+    if (titleMatch) {
+      const title = titleMatch[1].replace(/^["']|["']$/g, '');
+      existingTitles.set(normalizeTitle(title), file);
+    }
+  }
+  
+  return existingTitles;
+}
+
 function generateMarkdown(book, status) {
   const slug = generateSlug(book.title);
   const yearRead = book.dateRead ? new Date(book.dateRead).getFullYear() : null;
@@ -113,19 +143,32 @@ async function syncShelf(shelf) {
   
   console.log(`Found ${books.length} books in ${shelf} shelf`);
   
+  // Get existing books by normalized title to prevent duplicates
+  const existingTitles = getExistingBookTitles();
+  
   const status = STATUS_MAP[shelf] || 'read';
   let created = 0;
   let skipped = 0;
   
   for (const book of books) {
+    const normalizedTitle = normalizeTitle(book.title);
+    
+    // Skip if a book with similar title already exists (prevents duplicates with different slugs)
+    if (existingTitles.has(normalizedTitle)) {
+      skipped++;
+      continue;
+    }
+    
     const { slug, content } = generateMarkdown(book, status);
     const filePath = path.join(BOOKS_DIR, `${slug}.md`);
     
-    // Only create if file doesn't exist (don't overwrite manual edits)
+    // Double-check: also skip if exact file exists
     if (!fs.existsSync(filePath)) {
       fs.writeFileSync(filePath, content);
       console.log(`  Created: ${slug}.md`);
       created++;
+      // Add to existing titles to prevent duplicates within same sync
+      existingTitles.set(normalizedTitle, `${slug}.md`);
     } else {
       skipped++;
     }
