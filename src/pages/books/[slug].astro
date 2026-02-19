@@ -4,6 +4,8 @@ import PageLayout from "@/layouts/Base.astro";
 import type { Book } from "@/data/books";
 import { getBookCover, getBookSlug } from "@/data/books";
 
+export const prerender = true;
+
 export async function getStaticPaths() {
 	const bookEntries = await getCollection("book");
 	return bookEntries.map((entry) => {
