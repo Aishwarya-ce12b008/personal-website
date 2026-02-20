@@ -1,12 +1,11 @@
 ---
 title: "The Witch of Portobello"
-author: Paulo Coelho
-isbn: "9780061338816"
+author: "Paulo Coelho"
+isbn: "0007251866"
+cover: https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1178654373l/816720._SY475_.jpg
 status: read
 rating: 3
 tags: []
 yearRead: 2019
 ---
-
-A novel about a woman's spiritual journey as she searches for meaning and becomes a controversial figure in her community.
 

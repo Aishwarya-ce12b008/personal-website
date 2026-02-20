@@ -1,12 +1,11 @@
 ---
 title: "Atlas Shrugged"
-author: Ayn Rand
-isbn: "9780451191144"
+author: "Ayn Rand"
+isbn: "0452011876"
+cover: https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1405868167l/662.jpg
 status: read
 rating: 5
 tags: []
-yearRead: 2020
+yearRead: 2021
 ---
-
-Ayn Rand's magnum opus exploring a dystopian America where society's most productive citizens go on strike against government overreach.
 

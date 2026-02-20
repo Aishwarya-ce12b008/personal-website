@@ -1,12 +1,9 @@
 ---
 title: "Kafka on the Shore"
-author: Haruki Murakami
-isbn: "9781400079278"
+author: "Haruki Murakami"
+cover: https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1429638085l/4929._SY475_.jpg
 status: read
-rating: 2
 tags: []
 yearRead: 2019
 ---
-
-A surreal novel following two parallel stories: a teenage runaway named Kafka and an elderly man who can talk to cats.
 

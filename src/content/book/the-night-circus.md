@@ -1,12 +1,10 @@
 ---
 title: "The Night Circus"
-author: Erin Morgenstern
-isbn: "9780385534635"
+author: "Erin Morgenstern"
+cover: https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1387124618l/9361589.jpg
 status: read
 rating: 4
 tags: []
 yearRead: 2020
 ---
-
-A magical competition between two young illusionists set within a mysterious circus that only appears at night.
 

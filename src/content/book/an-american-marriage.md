@@ -1,12 +1,11 @@
 ---
 title: "An American Marriage"
-author: Tayari Jones
-isbn: "9781616208776"
+author: "Tayari Jones"
+isbn: "1616201347"
+cover: https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1491493625l/33590210._SY475_.jpg
 status: read
-rating: 2
+rating: 3
 tags: []
 yearRead: 2020
 ---
-
-A novel about a young African American couple whose lives are torn apart when the husband is wrongfully imprisoned.
 

@@ -1,12 +1,9 @@
 ---
 title: "Wuthering Heights"
-author: Emily Brontë
-isbn: "9780141439556"
+author: "Emily Brontë"
+cover: https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1388212715l/6185._SY475_.jpg
 status: read
 rating: 3
 tags: []
-yearRead: 2020
 ---
-
-Emily Brontë's only novel, a tale of passionate, destructive love between Heathcliff and Catherine on the Yorkshire moors.
 
