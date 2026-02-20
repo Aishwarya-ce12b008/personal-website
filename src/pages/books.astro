@@ -6,13 +6,25 @@ import type { Book } from "@/data/books";
 import PageLayout from "@/layouts/Base.astro";
 
 const bookEntries = await getCollection("book");
-const books: Book[] = bookEntries.map((entry) => ({
+const allBooks: Book[] = bookEntries.map((entry) => ({
 	...entry.data,
 	title: entry.data.title,
 	// Content body contains description and recommendation combined
 	description: entry.body?.split('\n')[0] || "",
 	recommendation: entry.body?.split('\n').slice(2).join('\n') || "",
 }));
+
+// Deduplicate by normalized title (removes series info like "(Book #1)")
+const normalizeTitle = (title: string) => 
+	title.toLowerCase().replace(/\s*\([^)]*\)\s*/g, '').replace(/[^\w\s]/g, '').trim();
+
+const seenTitles = new Set<string>();
+const books = allBooks.filter((book) => {
+	const normalized = normalizeTitle(book.title);
+	if (seenTitles.has(normalized)) return false;
+	seenTitles.add(normalized);
+	return true;
+});
 
 const meta = {
 	description: "A collection of books I've read, am reading, or hope to read soon.",
