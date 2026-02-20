@@ -19,12 +19,14 @@ const normalizeTitle = (title: string) =>
 	title.toLowerCase().replace(/\s*\([^)]*\)\s*/g, '').replace(/[^\w\s]/g, '').trim();
 
 const seenTitles = new Set<string>();
-const books = allBooks.filter((book) => {
-	const normalized = normalizeTitle(book.title);
-	if (seenTitles.has(normalized)) return false;
-	seenTitles.add(normalized);
-	return true;
-});
+const books = allBooks
+	.filter((book) => {
+		const normalized = normalizeTitle(book.title);
+		if (seenTitles.has(normalized)) return false;
+		seenTitles.add(normalized);
+		return true;
+	})
+	.sort((a, b) => (b.yearRead || 0) - (a.yearRead || 0));
 
 const meta = {
 	description: "A collection of books I've read, am reading, or hope to read soon.",
