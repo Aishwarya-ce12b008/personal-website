@@ -2,7 +2,7 @@
 title: Rethinking Design in the Age of GenAI
 description: While developers ride the AI wave, designers are still stuck with their 2019 toolbox. Here's why that's about to change.
 publishDate: 2025-04-03
-draft: false
+draft: true
 ogImage: https://cdn.sanity.io/images/599r6htc/regionalized/27db1d8f2eb3257c620306f5d87fd62db037c6eb-3264x1836.png?w=1632&q=75&fit=max&auto=format&dpr=2
 publication: Unstructured
 author: Manikantha
