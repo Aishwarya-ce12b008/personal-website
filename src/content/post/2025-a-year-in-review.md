@@ -12,6 +12,3 @@ The highlights, learnings and moments that made 2025 what it is.
 2. Made his birthday video
 3. Spent more time with family
 4. Hired a team
-5. fdf
-6. sdfdsf
-7. vfdgdf
