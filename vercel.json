@@ -7,5 +7,6 @@
       "destination": "https://aishwarya.work/:path*",
       "permanent": true
     }
-  ]
+  ],
+  "rewrites": [{ "source": "/evalworkbench", "destination": "https://eval-wb-7k3q9x.vercel.app/evalworkbench" }, { "source": "/evalworkbench/:path*", "destination": "https://eval-wb-7k3q9x.vercel.app/evalworkbench/:path*" }]
 }
