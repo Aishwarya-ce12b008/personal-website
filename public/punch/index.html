@@ -55,11 +55,16 @@ canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
 .dock{position:absolute;left:0;right:0;bottom:0;padding-bottom:14px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:10px;pointer-events:none}
 .dock > *{pointer-events:auto}
 .field{display:flex;align-items:center;gap:8px;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:6px 6px 6px 12px;backdrop-filter:blur(6px)}
-.field label{font:800 10px var(--body);letter-spacing:.14em;text-transform:uppercase;color:var(--muted);white-space:nowrap}
+.field > label:first-child{font:800 10px var(--body);letter-spacing:.14em;text-transform:uppercase;color:var(--muted);white-space:nowrap}
 input[type=text]{background:rgba(255,255,255,.06);border:1px solid var(--line);color:var(--ink);border-radius:8px;padding:7px 10px;font:700 14px var(--body);width:190px;max-width:44vw}
-button{white-space:nowrap;background:rgba(255,255,255,.08);border:1px solid var(--line);color:var(--ink);border-radius:8px;padding:8px 12px;font:700 13px var(--body);cursor:pointer}
-button:hover{background:rgba(255,255,255,.14)}
+.btnlike,button{white-space:nowrap;display:inline-block;background:rgba(255,255,255,.08);border:1px solid var(--line);color:var(--ink);border-radius:8px;padding:8px 12px;font:700 13px var(--body);cursor:pointer}
+.file-btn:hover .btnlike,button:hover{background:rgba(255,255,255,.14)}
+.file-btn:focus-within .btnlike{outline:2px solid var(--tape);outline-offset:2px}
 input:focus-visible,button:focus-visible{outline:2px solid var(--tape);outline-offset:2px}
+.file-btn{position:relative;overflow:hidden}
+.file-btn input{position:absolute;inset:0;opacity:0;cursor:pointer}
+.avatar{width:34px;height:34px;border-radius:50%;object-fit:cover;border:2px solid var(--ink);flex:none}
+.who{display:flex;align-items:center;gap:8px;min-width:0}
 .keys{font:600 12px var(--body);color:var(--muted);background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:9px 12px;backdrop-filter:blur(6px)}
 .keys kbd{font:800 11px var(--body);background:rgba(255,255,255,.1);border:1px solid var(--line);border-bottom-width:2px;border-radius:4px;padding:1px 6px;color:var(--ink)}
 
@@ -90,7 +95,7 @@ input:focus-visible,button:focus-visible{outline:2px solid var(--tape);outline-o
   <div class="hud">
     <div class="brand">Punching <span>Bag</span><small>Name your nemesis. Ruin its day.</small></div>
     <div class="vs">
-      <div class="plate"><span class="name" id="foe">Nikhil</span><span class="pct" id="pct">HP 100</span></div>
+      <div class="plate"><span class="who"><img class="avatar" id="avatar" alt="" hidden><span class="name" id="foe">Nikhil</span></span><span class="pct" id="pct">HP 100</span></div>
       <div class="health"><div class="ghost" id="ghost"></div><div class="fill" id="fill"></div></div>
       <div class="coach" id="coach">Go on. That bag has been asking for it.</div>
     </div>
@@ -106,6 +111,8 @@ input:focus-visible,button:focus-visible{outline:2px solid var(--tape);outline-o
     <div class="field">
       <label for="bagText">On the bag</label>
       <input type="text" id="bagText" maxlength="24" value="Nikhil">
+      <label class="file-btn" for="faceFile"><span class="btnlike">Add face</span><input type="file" id="faceFile" accept="image/*" aria-label="Add a face photo to the bag"></label>
+      <button id="clearFace" type="button" hidden>Remove face</button>
       <button id="mute" type="button" aria-pressed="false">Sound on</button>
     </div>
     <div class="keys">Tap to punch &nbsp; <kbd>F</kbd> <kbd>J</kbd> jabs &nbsp; <kbd>Space</kbd> haymaker</div>
@@ -212,6 +219,15 @@ function say(line){
 }
 const label = () => ($('bagText').value || '').trim();
 $('bagText').addEventListener('input', () => { $('foe').textContent = label() || 'The Bag'; });
+let face = null;
+$('faceFile').addEventListener('change', e => {
+  const f = e.target.files && e.target.files[0]; if (!f) return;
+  const url = URL.createObjectURL(f);
+  const img = new Image();
+  img.onload = () => { face = img; $('avatar').src = url; $('avatar').hidden = false; $('clearFace').hidden = false; say('Oh, it has a face now. Even better.'); };
+  img.src = url; e.target.value = '';
+});
+$('clearFace').addEventListener('click', () => { face = null; $('avatar').hidden = true; $('clearFace').hidden = true; });
 
 // ---------- helpers ----------
 const ease = x => 1 - Math.pow(1 - x, 3);
@@ -438,6 +454,27 @@ function drawBag(g){
     ctx.fillStyle = rg; ctx.beginPath(); ctx.ellipse(dx, d.ly, d.r * 1.2, d.r * 1.7, 0, 0, Math.PI * 2); ctx.fill();
   });
   ctx.restore();
+  // face
+  if (face){
+    const fr = Math.min(w * 0.4, h * 0.2), fy = y + h * 0.36;
+    const sq = 1 + Math.sin(t * 38) * 0.08 * bag.wobble;
+    ctx.save();
+    ctx.translate(0, fy); ctx.scale(sq, 2 - sq);
+    ctx.beginPath(); ctx.arc(0, 0, fr, 0, Math.PI * 2); ctx.closePath();
+    ctx.save(); ctx.clip();
+    const k = Math.max((fr * 2) / face.width, (fr * 2) / face.height);
+    ctx.drawImage(face, -face.width * k / 2, -face.height * k / 2, face.width * k, face.height * k);
+    if (bag.flash > 0.01){ ctx.fillStyle = 'rgba(255,40,30,' + (bag.flash * 0.45).toFixed(3) + ')'; ctx.fillRect(-fr, -fr, fr * 2, fr * 2); }
+    bag.dents.forEach(d => {
+      if (Math.abs(d.ly - fy) > fr) return;
+      const rg = ctx.createRadialGradient(d.side * fr * 0.45, d.ly - fy, 1, d.side * fr * 0.45, d.ly - fy, fr * 0.45);
+      rg.addColorStop(0, 'rgba(70,20,90,' + (0.55 * d.life).toFixed(3) + ')'); rg.addColorStop(1, 'rgba(70,20,90,0)');
+      ctx.fillStyle = rg; ctx.fillRect(-fr, -fr, fr * 2, fr * 2);
+    });
+    ctx.restore();
+    ctx.lineWidth = 4 * s; ctx.strokeStyle = '#f6efe2'; ctx.stroke();
+    ctx.restore();
+  }
   // caps
   ctx.fillStyle = '#1c0907'; rr(ctx, x - 3 * s, y - 4 * s, w + 6 * s, 16 * s, 6 * s); ctx.fill();
   rr(ctx, x - 3 * s, y + h - 12 * s, w + 6 * s, 16 * s, 6 * s); ctx.fill();
@@ -447,11 +484,11 @@ function drawBag(g){
   // name plate
   const text = label();
   if (text){
-    let size = Math.round(w * 0.3), lines;
+    let size = Math.round(w * (face ? 0.22 : 0.3)), lines;
     do { lines = wrapLines(text, w * 0.8, size); size -= 2; } while ((lines.length > 3 || lines.some(l => ctx.measureText(l).width > w * 0.86)) && size > 10);
     size += 2; ctx.font = size + 'px ' + DISPLAY;
     ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
-    const lh = size * 1.02, cy = y + h * 0.5 - (lines.length - 1) * lh / 2;
+    const lh = size * 1.02, cy = y + h * (face ? 0.68 : 0.5) - (lines.length - 1) * lh / 2;
     lines.forEach((l, i) => {
       ctx.fillStyle = 'rgba(0,0,0,0.35)'; ctx.fillText(l, 2 * s, cy + i * lh + 2 * s);
       ctx.fillStyle = '#f6efe2'; ctx.fillText(l, 0, cy + i * lh);
